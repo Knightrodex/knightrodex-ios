@@ -19,6 +19,7 @@
 		EDB2DDB52AEADD3200F9826E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB2DDB42AEADD3200F9826E /* APIClient.swift */; };
 		EDB2DDB72AEADE4A00F9826E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB2DDB62AEADE4A00F9826E /* SignUpViewController.swift */; };
 		EDB2DDBB2AEADF1D00F9826E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB2DDBA2AEADF1D00F9826E /* User.swift */; };
+		EDB2DDBD2AEC4BB900F9826E /* SignUpTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB2DDBC2AEC4BB900F9826E /* SignUpTemp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		EDB2DDB42AEADD3200F9826E /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		EDB2DDB62AEADE4A00F9826E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		EDB2DDBA2AEADF1D00F9826E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EDB2DDBC2AEC4BB900F9826E /* SignUpTemp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTemp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				EDB2DDBA2AEADF1D00F9826E /* User.swift */,
+				EDB2DDBC2AEC4BB900F9826E /* SignUpTemp.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDB2DD892AEAD54000F9826E /* LoginViewController.swift in Sources */,
+				EDB2DDBD2AEC4BB900F9826E /* SignUpTemp.swift in Sources */,
 				EDB2DD852AEAD54000F9826E /* AppDelegate.swift in Sources */,
 				EDB2DDBB2AEADF1D00F9826E /* User.swift in Sources */,
 				EDB2DD872AEAD54000F9826E /* SceneDelegate.swift in Sources */,
