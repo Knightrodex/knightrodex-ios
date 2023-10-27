@@ -14,6 +14,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var hiddedTextLabel: UILabel!
     
     
     
@@ -25,12 +26,21 @@ class SignUpViewController: UIViewController {
                 // Handle successful login, e.g., navigate to the next screen
                 DispatchQueue.main.async {
                     // Update UI or navigate to the next view controller
+                    
+                    self.hiddedTextLabel.isHidden = false
+                    self.hiddedTextLabel.text = "Account Created"
+                    self.hiddedTextLabel.textColor = UIColor.green
                     print(user) // Remove this
                     self.dismiss(animated: true, completion: nil) // May need to come back for this
                     
                 }
             case .failure(let error):
                 // Handle login failure, e.g., show an error message
+                DispatchQueue.main.async {
+                    self.hiddedTextLabel.isHidden = false
+                    self.hiddedTextLabel.text = "Error!"
+                    self.hiddedTextLabel.textColor = UIColor.red
+                }
                 print("Login failed: \(error)")
             }
         }
@@ -41,7 +51,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        hiddedTextLabel.isHidden = true
     }
     
     

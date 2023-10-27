@@ -87,6 +87,56 @@
             </objects>
             <point key="canvasLocation" x="1054" y="4"/>
         </scene>
+        <!--Item 2-->
+        <scene sceneID="hNI-rn-E4j">
+            <objects>
+                <viewController id="xNW-id-Mgw" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="L1i-aI-8qI">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="j4h-b0-DUu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" image="camera" catalog="system" id="eQo-GQ-lfK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lN0-E9-S55" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3085" y="742"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="A4f-j1-7jy">
+            <objects>
+                <viewController id="zyb-q5-1FH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C9k-VO-vhU">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="7By-s7-WQC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" image="house" catalog="system" id="Wsm-xR-esH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P44-Ic-quG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2315" y="742"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="AIK-ub-ao6">
+            <objects>
+                <tabBarController id="4qU-qR-ZRh" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lfA-3D-u8m">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="zyb-q5-1FH" kind="relationship" relationship="viewControllers" id="nah-Y8-mNQ"/>
+                        <segue destination="xNW-id-Mgw" kind="relationship" relationship="viewControllers" id="UhF-PL-U3t"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ohu-cc-0XV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3085" y="4"/>
+        </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="vp3-In-K2B">
             <objects>
@@ -149,7 +199,7 @@
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGa-lw-TuK">
-                                <rect key="frame" x="154" y="584" width="84" height="35"/>
+                                <rect key="frame" x="154" y="599" width="84" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sign Up"/>
@@ -163,6 +213,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Here!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDd-8P-n1c">
+                                <rect key="frame" x="96" y="561" width="200" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v5X-yX-1gd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -170,16 +227,19 @@
                     <connections>
                         <outlet property="emailField" destination="ije-C7-vGE" id="fzf-9w-QVU"/>
                         <outlet property="firstNameField" destination="Fbb-bK-d8T" id="d2D-fi-EbX"/>
+                        <outlet property="hiddedTextLabel" destination="jDd-8P-n1c" id="j7z-bs-VmW"/>
                         <outlet property="lastNameField" destination="pom-u9-0DJ" id="ehj-Up-2aN"/>
                         <outlet property="passwordField" destination="KID-Mi-LuN" id="mlt-me-MD0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ein-gM-Zf9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1833" y="4"/>
+            <point key="canvasLocation" x="781" y="742"/>
         </scene>
     </scenes>
     <resources>
+        <image name="camera" catalog="system" width="128" height="93"/>
+        <image name="house" catalog="system" width="128" height="104"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
