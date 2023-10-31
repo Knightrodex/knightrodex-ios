@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CryptoKit
 
 
 func loginUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
@@ -99,5 +100,13 @@ func signUpUser(firstName: String, lastName: String, email: String, password: St
     }
 
     task.resume()
+}
+
+func MD5(string: String) -> String {
+    let digest = Insecure.MD5.hash(data: Data(string.utf8))
+
+    return digest.map {
+        String(format: "%02hhx", $0)
+    }.joined()
 }
 
