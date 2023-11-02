@@ -24,7 +24,7 @@ func loginUser(email: String, password: String, completion: @escaping (Result<Us
     ]
     
     do {
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type") // May need to remove
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
     } catch {
         completion(.failure(error))
