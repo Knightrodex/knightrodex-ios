@@ -9,7 +9,7 @@ import Foundation
 
 struct User: Codable {
     // Define properties for the user data
-    let _id: String
+    let userId: String
     let email: String
     let firstName: String
     let lastName: String

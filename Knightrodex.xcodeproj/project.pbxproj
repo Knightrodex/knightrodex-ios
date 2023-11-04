@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED3F3FC02AF5AA96003CF887 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3F3FBF2AF5AA96003CF887 /* ScannerViewController.swift */; };
 		EDB2DD852AEAD54000F9826E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB2DD842AEAD54000F9826E /* AppDelegate.swift */; };
 		EDB2DD872AEAD54000F9826E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB2DD862AEAD54000F9826E /* SceneDelegate.swift */; };
 		EDB2DD892AEAD54000F9826E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB2DD882AEAD54000F9826E /* LoginViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ED3F3FBF2AF5AA96003CF887 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		EDB2DD812AEAD54000F9826E /* Knightrodex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Knightrodex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB2DD842AEAD54000F9826E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDB2DD862AEAD54000F9826E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				EDB2DD882AEAD54000F9826E /* LoginViewController.swift */,
 				EDB2DDB62AEADE4A00F9826E /* SignUpViewController.swift */,
+				ED3F3FBF2AF5AA96003CF887 /* ScannerViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				EDB2DD872AEAD54000F9826E /* SceneDelegate.swift in Sources */,
 				EDB2DDB52AEADD3200F9826E /* APIClient.swift in Sources */,
 				EDB2DDB72AEADE4A00F9826E /* SignUpViewController.swift in Sources */,
+				ED3F3FC02AF5AA96003CF887 /* ScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

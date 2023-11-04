@@ -8,7 +8,7 @@
 import Foundation
 
 struct SignUpTemp: Codable {
-    let _id: String
+    let userId: String?
     let firstName: String
     let lastName: String
     let error: String

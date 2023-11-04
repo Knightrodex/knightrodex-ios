@@ -21,7 +21,7 @@ func loginUser(email: String, password: String, completion: @escaping (Result<Us
     // Create a dictionary for the request body
     let requestBody: [String: String] = [
         "email": email,
-        "password": password
+        "password": MD5(string: password)
     ]
     
     do {
@@ -43,7 +43,17 @@ func loginUser(email: String, password: String, completion: @escaping (Result<Us
         if let data = data {
             do {
                 let user = try JSONDecoder().decode(User.self, from: data)
-                print(user) // Will need to remove
+                
+                // This how we're able to access the user data and everything is already decoded and accessible for us
+                print("Login was successful:")
+                print("==================================")
+                print("userId: \(user.userId)")
+                print("email: \(user.email)")
+                print("firstName: \(user.firstName)")
+                print("lastName: \(user.lastName)")
+                print("error: \(user.error)")
+                print("==================================")
+                
                 completion(.success(user))
             } catch {
                 completion(.failure(error))
@@ -68,7 +78,7 @@ func signUpUser(firstName: String, lastName: String, email: String, password: St
         "firstName": firstName,
         "lastName": lastName,
         "email": email,
-        "password": password
+        "password": MD5(string: password)
     ]
     
     do {

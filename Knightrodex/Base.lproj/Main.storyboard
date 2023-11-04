@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -84,6 +85,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="Te9-NZ-Ow9" id="CKE-W8-gMK"/>
                         <outlet property="passwordTextField" destination="FJN-mo-lyS" id="J7Q-BQ-dpA"/>
+                        <segue destination="WC5-bh-xM2" kind="show" identifier="LoginToTapBar" id="9MX-9x-eEC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -93,10 +95,29 @@
         <!--Scan-->
         <scene sceneID="L9P-Mz-dY6">
             <objects>
-                <viewController id="Ob9-Na-z5A" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScannerViewController" id="Ob9-Na-z5A" customClass="ScannerViewController" customModule="Knightrodex" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t54-1z-5DN">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="O8T-8P-xmk">
+                                <rect key="frame" x="0.0" y="-13" width="393" height="624"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSQ-zF-Lop">
+                                <rect key="frame" x="116" y="641" width="161" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled">
+                                    <imageReference key="image" image="qrcode.viewfinder" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapQrButton:" destination="Ob9-Na-z5A" eventType="touchUpInside" id="lf1-vx-9S1"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="wcA-Ue-0Xu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -104,14 +125,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="djF-w8-XRK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3778" y="742"/>
+            <point key="canvasLocation" x="3777.8625954198474" y="741.54929577464793"/>
         </scene>
         <!--Home-->
         <scene sceneID="sct-9C-IYV">
             <objects>
                 <viewController id="uZc-fu-Rtl" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XAr-WJ-jVb">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="ThR-gl-576"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -127,8 +148,22 @@
             <objects>
                 <viewController id="url-rX-dDl" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="np9-5Z-awq">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Win-MS-0hw">
+                                <rect key="frame" x="0.0" y="211" width="393" height="539"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="176-ba-W3f">
+                                <rect key="frame" x="175" y="89" width="188" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="TGI-j2-JLZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -136,12 +171,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ils-Q0-kv3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4940" y="742"/>
+            <point key="canvasLocation" x="4939.6946564885493" y="741.54929577464793"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zdy-FA-u40">
             <objects>
-                <tabBarController id="WC5-bh-xM2" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="WC5-bh-xM2" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="2tk-qI-aWl"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VTo-1P-P79">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
@@ -334,6 +369,7 @@
         <image name="camera.fill" catalog="system" width="128" height="93"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="qrcode.viewfinder" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -21,13 +21,22 @@ class LoginViewController: UIViewController {
                 // Handle successful login, e.g., navigate to the next screen
                 DispatchQueue.main.async {
                     // Update UI or navigate to the next view controller
-                    
+                    // ===== Note to self: Should we also pass the data in here????? ====
+                    self.showHome()
                 }
             case .failure(let error):
                 // Handle login failure, e.g., show an error message
                 print("Login failed: \(error)")
             }
         }
+    }
+    
+    
+    func showHome() {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+        self.view.window?.rootViewController = viewController
+        self.view.window?.makeKeyAndVisible()
     }
     
     override func viewDidLoad() {
