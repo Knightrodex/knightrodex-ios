@@ -22,10 +22,12 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     // Update UI or navigate to the next view controller
                     // ===== Note to self: Should we also pass the data in here????? ====
+                    User.save(user)
                     self.showHome()
                 }
             case .failure(let error):
                 // Handle login failure, e.g., show an error message
+                print("bad credential")
                 print("Login failed: \(error)")
             }
         }

@@ -15,6 +15,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loaded scan vc")
+        
+        let user = User.getUserLogin()
+        
+        print("This is coming from the User Default")
+        print("UserId: \(user.userId)")
+        print(user)
     }
     
     
