@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ED3F3FC02AF5AA96003CF887 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3F3FBF2AF5AA96003CF887 /* ScannerViewController.swift */; };
+		EDA4D5DE2AF714BC0042EAB2 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA4D5DD2AF714BC0042EAB2 /* UserProfile.swift */; };
 		EDB2DD852AEAD54000F9826E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB2DD842AEAD54000F9826E /* AppDelegate.swift */; };
 		EDB2DD872AEAD54000F9826E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB2DD862AEAD54000F9826E /* SceneDelegate.swift */; };
 		EDB2DD892AEAD54000F9826E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB2DD882AEAD54000F9826E /* LoginViewController.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		ED3F3FBF2AF5AA96003CF887 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		EDA4D5DD2AF714BC0042EAB2 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		EDB2DD812AEAD54000F9826E /* Knightrodex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Knightrodex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB2DD842AEAD54000F9826E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDB2DD862AEAD54000F9826E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				EDB2DDBA2AEADF1D00F9826E /* User.swift */,
 				EDB2DDBC2AEC4BB900F9826E /* SignUpTemp.swift */,
+				EDA4D5DD2AF714BC0042EAB2 /* UserProfile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				EDB2DDB52AEADD3200F9826E /* APIClient.swift in Sources */,
 				EDB2DDB72AEADE4A00F9826E /* SignUpViewController.swift in Sources */,
 				ED3F3FC02AF5AA96003CF887 /* ScannerViewController.swift in Sources */,
+				EDA4D5DE2AF714BC0042EAB2 /* UserProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
