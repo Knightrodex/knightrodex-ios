@@ -39,10 +39,13 @@ class LoginViewController: UIViewController {
     }
     
     func isInvalid(user: User) -> Bool {
-        if (user.userId == "" || user.error.count > 0) {
-            return true;
-        }
-        return false;
+//        if (user.userId == "" || user.error.count > 0) {
+//            return true;
+//        }
+//        return false;
+        
+        // How about this, Max?
+        return (user.userId == "" || user.error.count > 0)
     }
     
     func showAlert(title: String, message: String) {
