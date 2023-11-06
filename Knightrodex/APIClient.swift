@@ -52,8 +52,7 @@ func loginUser(email: String, password: String, completion: @escaping (Result<Us
     task.resume()
 }
 
-// TODO: Replace with User struct after endpoint changes
-func signUpUser(firstName: String, lastName: String, email: String, password: String, completion: @escaping (Result<SignUpTemp, Error>) -> Void) {
+func signUpUser(firstName: String, lastName: String, email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
     // Define the URL for Sign Up API
     let signUpURL = URL(string: Constant.apiPath + Constant.signUpEndpoint)!
 
@@ -87,13 +86,63 @@ func signUpUser(firstName: String, lastName: String, email: String, password: St
         // Process the API response (assuming it's JSON)
         if let data = data {
             do {
-                let user = try JSONDecoder().decode(SignUpTemp.self, from: data)
+                let user = try JSONDecoder().decode(User.self, from: data)
                 completion(.success(user))
             } catch {
                 completion(.failure(error))
             }
         }
      
+    }
+
+    task.resume()
+}
+
+func getHints(userId: String, completion: @escaping (Result<[String], Error>) -> Void) {
+    // Define the URL for Login API
+    let hintsURL = URL(string: Constant.apiPath + Constant.hintsEndpoint)!
+
+    // Create a URLRequest
+    var request = URLRequest(url: hintsURL)
+    request.httpMethod = "POST"
+    
+    // Create a dictionary for the request body
+    let requestBody: [String: String] = [
+        "userId": userId
+    ]
+    
+    do {
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+    } catch {
+        completion(.failure(error))
+        return
+    }
+
+    // Create a URLSession data task
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        if let error = error {
+            completion(.failure(error))
+            return
+        }
+
+        // Process the API response (assuming it's JSON)
+        if let data = data {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
+                    // Access the "hints" field and cast it to an array of strings
+                    if let hintsArray = json["hints"] as? [String] {
+                        completion(.success(hintsArray))
+                    } else {
+                        print("Failed to cast 'hints' to an array of strings.")
+                    }
+                } else {
+                    print("Failed to parse JSON data as a dictionary.")
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
     }
 
     task.resume()

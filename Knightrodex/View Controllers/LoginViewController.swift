@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
             switch result {
             case .success(let user):
                 DispatchQueue.main.async {
-                    if (self.isInvalid(user: user)) {
+                    if (self.isInvalidUser(user: user)) {
                         self.showAlert(title: "Login Failed", message: user.error)
                         return;
                     }
@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
                     self.showHome()
                 }
             case .failure(let error):
-                print("Login API Call Failed: \(error)")
+                print("Login API Call Error: \(error)")
                 DispatchQueue.main.async {
                     self.showAlert(title: "Login Error", message: error.localizedDescription)
                 }
@@ -38,13 +38,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func isInvalid(user: User) -> Bool {
-//        if (user.userId == "" || user.error.count > 0) {
-//            return true;
-//        }
-//        return false;
-        
-        // How about this, Max?
+    func isInvalidUser(user: User) -> Bool {
         return (user.userId == "" || user.error.count > 0)
     }
     

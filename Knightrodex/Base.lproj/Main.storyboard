@@ -100,11 +100,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="O8T-8P-xmk">
-                                <rect key="frame" x="0.0" y="-13" width="393" height="624"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSQ-zF-Lop">
                                 <rect key="frame" x="116" y="641" width="161" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -114,14 +109,49 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="didTapQrButton:" destination="Ob9-Na-z5A" eventType="touchUpInside" id="lf1-vx-9S1"/>
+                                    <segue destination="Rii-Ow-bwZ" kind="show" id="yEg-q8-sar"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="O8T-8P-xmk">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="633"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HintTableViewCell" rowHeight="122" id="zcW-d4-Od2" customClass="HintTableViewCell" customModule="Knightrodex" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="122"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zcW-d4-Od2" id="3YK-Dm-el2">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="122"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxh-id-gya">
+                                                    <rect key="frame" x="20" y="7.9999999999999982" width="353" height="20.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Xxh-id-gya" secondAttribute="bottom" constant="8" id="JCo-yf-WAl"/>
+                                                <constraint firstItem="Xxh-id-gya" firstAttribute="top" secondItem="3YK-Dm-el2" secondAttribute="top" constant="8" id="L85-1H-U3O"/>
+                                                <constraint firstAttribute="trailing" secondItem="Xxh-id-gya" secondAttribute="trailing" constant="20" symbolic="YES" id="TJK-tm-oL3"/>
+                                                <constraint firstItem="Xxh-id-gya" firstAttribute="leading" secondItem="3YK-Dm-el2" secondAttribute="leading" constant="20" symbolic="YES" id="sku-4Q-mOg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="hintLabel" destination="Xxh-id-gya" id="Wen-fv-lUt"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wcA-Ue-0Xu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Scan" image="camera.fill" catalog="system" id="HjK-Di-4uF"/>
+                    <connections>
+                        <outlet property="hintsTableView" destination="O8T-8P-xmk" id="0cF-fB-Etw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="djF-w8-XRK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -367,6 +397,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jHz-kg-Lv8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1011" y="742"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="O11-Bb-eKA">
+            <objects>
+                <viewController id="Rii-Ow-bwZ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U4W-dq-TUB">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="rnL-E8-Ckc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="okv-Te-fSq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mDJ-25-ch1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3778" y="1477"/>
         </scene>
     </scenes>
     <resources>

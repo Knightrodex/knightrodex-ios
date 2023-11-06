@@ -41,6 +41,11 @@ class SignUpViewController: UIViewController {
             switch result {
             case .success(let user):
                 DispatchQueue.main.async {
+                    if (self.isInvalidUser(user: user)) {
+                        self.showAlert(title: "Sign Up Failed", message: user.error)
+                        return;
+                    }
+                    
                     self.hiddedTextLabel.text = "Account Created"
                     self.hiddedTextLabel.textColor = UIColor.green
                     self.hiddedTextLabel.isHidden = false
@@ -48,7 +53,7 @@ class SignUpViewController: UIViewController {
                     
                 }
             case .failure(let error):
-                print("Sign Up API Call Failed: \(error)")
+                print("Sign Up API Call Error: \(error)")
                 DispatchQueue.main.async {
                     self.showAlert(title: "Sign Up Error", message: error.localizedDescription)
                 }
@@ -94,6 +99,10 @@ class SignUpViewController: UIViewController {
         let hasSpecialCharacter = specialCharacterTest.evaluate(with: password)
 
         return (password.count >= 8 && hasCapitalLetter && hasNumber && hasSpecialCharacter)
+    }
+    
+    func isInvalidUser(user: User) -> Bool {
+        return (user.userId == "" || user.error.count > 0)
     }
     
     func showAlert(title: String, message: String) {
