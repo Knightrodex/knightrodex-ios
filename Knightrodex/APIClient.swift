@@ -9,10 +9,9 @@ import Foundation
 import UIKit
 import CryptoKit
 
-
 func loginUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
-    // Define the URL for your login API
-    let loginURL = URL(string: "https://knightrodex-49dcc2a6c1ae.herokuapp.com/api/login")!
+    // Define the URL for Login API
+    let loginURL = URL(string: Constant.apiPath + Constant.loginEndpoint)!
 
     // Create a URLRequest
     var request = URLRequest(url: loginURL)
@@ -43,17 +42,6 @@ func loginUser(email: String, password: String, completion: @escaping (Result<Us
         if let data = data {
             do {
                 let user = try JSONDecoder().decode(User.self, from: data)
-                
-                // This how we're able to access the user data and everything is already decoded and accessible for us
-                print("Login was successful:")
-                print("==================================")
-                print("userId: \(user.userId)")
-                print("email: \(user.email)")
-                print("firstName: \(user.firstName)")
-                print("lastName: \(user.lastName)")
-                print("error: \(user.error)")
-                print("==================================")
-                
                 completion(.success(user))
             } catch {
                 completion(.failure(error))
@@ -64,10 +52,10 @@ func loginUser(email: String, password: String, completion: @escaping (Result<Us
     task.resume()
 }
 
-
+// TODO: Replace with User struct after endpoint changes
 func signUpUser(firstName: String, lastName: String, email: String, password: String, completion: @escaping (Result<SignUpTemp, Error>) -> Void) {
-    // Define the URL for your signup API
-    let signUpURL = URL(string: "https://knightrodex-49dcc2a6c1ae.herokuapp.com/api/signup")!
+    // Define the URL for Sign Up API
+    let signUpURL = URL(string: Constant.apiPath + Constant.signUpEndpoint)!
 
     // Create a URLRequest
     var request = URLRequest(url: signUpURL)
@@ -88,7 +76,7 @@ func signUpUser(firstName: String, lastName: String, email: String, password: St
         completion(.failure(error))
         return
     }
-    print(request) // Remove this
+    
     // Create a URLSession data task
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         if let error = error {
@@ -100,7 +88,6 @@ func signUpUser(firstName: String, lastName: String, email: String, password: St
         if let data = data {
             do {
                 let user = try JSONDecoder().decode(SignUpTemp.self, from: data)
-                print(user) // Will need to remove
                 completion(.success(user))
             } catch {
                 completion(.failure(error))
@@ -119,4 +106,3 @@ func MD5(string: String) -> String {
         String(format: "%02hhx", $0)
     }.joined()
 }
-

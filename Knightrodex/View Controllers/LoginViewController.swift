@@ -9,30 +9,60 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     @IBAction func didTapLoginButton(_ sender: UIButton) {
         loginUser(email: emailTextField.text!, password: passwordTextField.text!) { result in
             switch result {
             case .success(let user):
-                // Handle successful login, e.g., navigate to the next screen
                 DispatchQueue.main.async {
-                    // Update UI or navigate to the next view controller
-                    // ===== Note to self: Should we also pass the data in here????? ====
+                    if (self.isInvalid(user: user)) {
+                        self.showAlert(title: "Login Failed", message: user.error)
+                        return;
+                    }
+                    
                     User.save(user)
                     self.showHome()
                 }
             case .failure(let error):
-                // Handle login failure, e.g., show an error message
-                print("bad credential")
-                print("Login failed: \(error)")
+                print("Login API Call Failed: \(error)")
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Login Error", message: error.localizedDescription)
+                }
             }
         }
     }
     
+    func isInvalid(user: User) -> Bool {
+        if (user.userId == "" || user.error.count > 0) {
+            return true;
+        }
+        return false;
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+
+        let okAction = UIAlertAction(
+            title: "Dismiss",
+            style: .default,
+            handler: { action in
+                // Handle the OK button action (if needed)
+            }
+        )
+
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
     
     func showHome() {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -40,12 +70,4 @@ class LoginViewController: UIViewController {
         self.view.window?.rootViewController = viewController
         self.view.window?.makeKeyAndVisible()
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-
 }
-
