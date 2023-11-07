@@ -22,10 +22,10 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     func setupQRCodeScanner() {
         // Get the back-facing camera for capturing videos
-        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera], mediaType: AVMediaType.video, position: .back)
+        //let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera], mediaType: AVMediaType.video, position: .back)
 
-        guard let captureDevice = deviceDiscoverySession.devices.first else {
-            print("Failed to get the camera device")
+        guard let captureDevice = AVCaptureDevice.default(for: .video) else {
+            print("No video camera available.")
             return
         }
 
@@ -50,9 +50,6 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             videoPreviewLayer?.frame = view.layer.bounds
             view.layer.addSublayer(videoPreviewLayer!)
             
-            // Start video capture.
-            captureSession.startRunning()
-            
             // Initialize QR Code Frame to highlight the QR code
             qrCodeFrameView = UIView()
 
@@ -62,54 +59,15 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 view.addSubview(qrCodeFrameView)
                 view.bringSubviewToFront(qrCodeFrameView)
             }
+            
+            DispatchQueue.global(qos: .background).async {
+                self.captureSession.startRunning()
+            }
         } catch {
             // If any error occurs, simply print it out and don't continue any more.
             print(error)
             return
         }
-        
-        // TODO: Test and remove below
-//        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
-//            print("No video camera available.")
-//            return
-//        }
-//
-//        let videoInput: AVCaptureDeviceInput
-//
-//        do {
-//            videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
-//        } catch {
-//            print(error)
-//            return
-//        }
-//
-//        if captureSession.canAddInput(videoInput) {
-//            captureSession.addInput(videoInput)
-//        } else {
-//            print("Could not add video input to the session.")
-//            return
-//        }
-//
-//        let metadataOutput = AVCaptureMetadataOutput()
-//
-//        if captureSession.canAddOutput(metadataOutput) {
-//            captureSession.addOutput(metadataOutput)
-//
-//            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-//            metadataOutput.metadataObjectTypes = [.qr]
-//        } else {
-//            print("Could not add metadata output to the session.")
-//            return
-//        }
-//
-//        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-//        previewLayer.frame = view.layer.bounds
-//        view.layer.addSublayer(previewLayer)
-//
-//
-//        DispatchQueue.global(qos: .background).async {
-//            self.captureSession.startRunning()
-//        }
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
@@ -131,8 +89,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             if metadataObj.stringValue != nil {
                 print(metadataObj.stringValue)
                 captureSession.stopRunning();
-                // TODO: Dismiss only when API succeeds
-                // dismiss(animated: true, completion: nil);
+                dismiss(animated: true, completion: nil);
             }
         }
     }
