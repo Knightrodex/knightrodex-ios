@@ -7,13 +7,16 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     @IBAction func didTapLoginButton(_ sender: UIButton) {
@@ -36,6 +39,18 @@ class LoginViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    // Methods
+    func hideKeyboard() {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
+    
+    // UITextFieldDelegate Methods
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hideKeyboard()
+        return true
     }
     
     func isInvalidUser(user: User) -> Bool {

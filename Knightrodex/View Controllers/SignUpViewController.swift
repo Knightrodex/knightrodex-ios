@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
@@ -18,6 +18,23 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hiddedTextLabel.isHidden = true
+        
+        firstNameField.delegate = self
+        lastNameField.delegate = self
+        emailField.delegate = self
+        passwordField.delegate = self
+    }
+    
+    func hideKeyboard() {
+        firstNameField.resignFirstResponder()
+        lastNameField.resignFirstResponder()
+        emailField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hideKeyboard()
+        return true
     }
     
     @IBAction func didTapSignUpButton(_ sender: UIButton) {
