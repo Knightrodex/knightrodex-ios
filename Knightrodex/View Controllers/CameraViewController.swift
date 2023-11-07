@@ -24,9 +24,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     }
     
     func setupQRCodeScanner() {
-        // Get the back-facing camera for capturing videos
-        //let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera], mediaType: AVMediaType.video, position: .back)
-
+        // Get the device for capturing videos
         guard let captureDevice = AVCaptureDevice.default(for: .video) else {
             print("No video camera available.")
             return
