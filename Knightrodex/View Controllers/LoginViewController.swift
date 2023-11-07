@@ -17,6 +17,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        // Listen for keyboard events
+        
     }
     
     @IBAction func didTapLoginButton(_ sender: UIButton) {
@@ -46,6 +49,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
     }
+    
+    // Don't worry about this for now
+    // =====
+    // Implementation of having the screen move with the keyboard
+    @objc func keyboardWillChange(notification: Notification) {
+        print("Keyboard will show: \(notification.name.rawValue)")
+    }
+    // =====
     
     // UITextFieldDelegate Methods
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
