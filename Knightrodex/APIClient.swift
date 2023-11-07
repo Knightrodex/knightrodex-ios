@@ -52,7 +52,7 @@ func loginUser(email: String, password: String, completion: @escaping (Result<Us
     task.resume()
 }
 
-func addBadge(userId: String, badgeId: String, completion: @escaping (Result<User, Error>) -> Void) {
+func addBadge(userId: String, badgeId: String, completion: @escaping (Result<Badge, Error>) -> Void) {
     // Define the URL for Sign Up API
     let addBadgeURL = URL(string: Constant.apiPath + Constant.badgeEndpoint)!
 
@@ -84,8 +84,8 @@ func addBadge(userId: String, badgeId: String, completion: @escaping (Result<Use
         // Process the API response (assuming it's JSON)
         if let data = data {
             do {
-                let user = try JSONDecoder().decode(User.self, from: data)
-                completion(.success(user))
+                let badge = try JSONDecoder().decode(Badge.self, from: data)
+                completion(.success(badge))
             } catch {
                 completion(.failure(error))
             }

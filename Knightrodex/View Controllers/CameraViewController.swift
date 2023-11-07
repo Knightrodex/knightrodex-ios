@@ -13,6 +13,9 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     var captureSession = AVCaptureSession()
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
+    
+    var user = User.getUserLogin()
+    var isAvailable = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,10 +90,59 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             qrCodeFrameView?.frame = barCodeObject!.bounds
 
             if metadataObj.stringValue != nil {
-                print(metadataObj.stringValue)
-                captureSession.stopRunning();
-                dismiss(animated: true, completion: nil);
+                scanBadge(badgeId: metadataObj.stringValue!);
             }
         }
+    }
+    
+    func scanBadge(badgeId: String) {
+        if (!isAvailable) {
+            return;
+        }
+        isAvailable = false;
+        
+        addBadge(userId: user.userId, badgeId: badgeId) { result in
+            switch result {
+            case .success(let badge):
+                DispatchQueue.main.async {
+                    if (self.isInvalidBadge(badge: badge)) {
+                        self.showAlert(title: "Badge Scan Failed", message: badge.error)
+                        return
+                    }
+                    
+                    // TODO: Delegate to refresh Table View & Open Badge Screen
+                    // ...
+                    self.dismiss(animated: true, completion: nil);
+                }
+            case .failure(let error):
+                print("Badge Scan API Call Error: \(error)")
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Badge Scan Error", message: error.localizedDescription)
+                }
+            }
+        }
+    }
+
+    func isInvalidBadge(badge: Badge) -> Bool {
+        return (badge.error.count > 0)
+    }
+
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+
+        let okAction = UIAlertAction(
+            title: "Dismiss",
+            style: .default,
+            handler: { action in
+                self.isAvailable = true
+            }
+        )
+
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
 }

@@ -10,6 +10,7 @@
 		6B0A07322AF970C90090AB31 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A07312AF970C90090AB31 /* CameraViewController.swift */; };
 		6BEDD2682AF92DA800C04F45 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BEDD2672AF92DA800C04F45 /* Constant.swift */; };
 		6BEDD26B2AF94D9900C04F45 /* HintTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BEDD26A2AF94D9900C04F45 /* HintTableViewCell.swift */; };
+		B99816C62AF9C33900389DB2 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99816C52AF9C33900389DB2 /* Badge.swift */; };
 		ED3F3FC02AF5AA96003CF887 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3F3FBF2AF5AA96003CF887 /* ScannerViewController.swift */; };
 		EDA4D5DE2AF714BC0042EAB2 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA4D5DD2AF714BC0042EAB2 /* UserProfile.swift */; };
 		EDB2DD852AEAD54000F9826E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB2DD842AEAD54000F9826E /* AppDelegate.swift */; };
@@ -47,6 +48,7 @@
 		6B0A07312AF970C90090AB31 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		6BEDD2672AF92DA800C04F45 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		6BEDD26A2AF94D9900C04F45 /* HintTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintTableViewCell.swift; sourceTree = "<group>"; };
+		B99816C52AF9C33900389DB2 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		ED3F3FBF2AF5AA96003CF887 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		EDA4D5DD2AF714BC0042EAB2 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		EDB2DD812AEAD54000F9826E /* Knightrodex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Knightrodex.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +173,7 @@
 				EDB2DDBA2AEADF1D00F9826E /* User.swift */,
 				EDA4D5DD2AF714BC0042EAB2 /* UserProfile.swift */,
 				6BEDD2672AF92DA800C04F45 /* Constant.swift */,
+				B99816C52AF9C33900389DB2 /* Badge.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BEDD26B2AF94D9900C04F45 /* HintTableViewCell.swift in Sources */,
+				B99816C62AF9C33900389DB2 /* Badge.swift in Sources */,
 				EDB2DD892AEAD54000F9826E /* LoginViewController.swift in Sources */,
 				EDB2DD852AEAD54000F9826E /* AppDelegate.swift in Sources */,
 				EDB2DDBB2AEADF1D00F9826E /* User.swift in Sources */,
@@ -498,9 +502,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X98392J8R4;
+				DEVELOPMENT_TEAM = MQ5Q5JHR79;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Knightrodex/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera to scan QR codes.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -512,7 +517,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ram.Knightrodex;
+				PRODUCT_BUNDLE_IDENTIFIER = max.Knightrodex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -527,9 +532,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X98392J8R4;
+				DEVELOPMENT_TEAM = MQ5Q5JHR79;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Knightrodex/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera to scan QR codes.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -541,7 +547,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ram.Knightrodex;
+				PRODUCT_BUNDLE_IDENTIFIER = max.Knightrodex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
