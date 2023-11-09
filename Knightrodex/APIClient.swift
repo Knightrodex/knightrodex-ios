@@ -45,10 +45,11 @@ func loginUser(email: String, password: String, completion: @escaping (Result<Us
                     var user = User.initializeUser()
                     user.error = json["error"] as? String ?? ""
                     let jwt = json["jwtToken"] as? String ?? ""
-                    if (jwt.count == 0) {
+                    if (jwt.isEmpty) {
                         completion(.success(user))
                     } else {
                         user = getUserFromJWT(jwtToken: jwt)
+                        User.saveJwt(jwt)
                         completion(.success(user))
                     }
                 }
@@ -72,7 +73,8 @@ func addBadge(userId: String, badgeId: String, completion: @escaping (Result<Bad
     // Create a dictionary for the request body
     let requestBody: [String: String] = [
         "userId": userId,
-        "badgeId": badgeId
+        "badgeId": badgeId,
+        "jwtToken": User.getJwtToken()
     ]
     
     do {
@@ -93,13 +95,15 @@ func addBadge(userId: String, badgeId: String, completion: @escaping (Result<Bad
         // Process the API response (assuming it's JSON)
         if let data = data {
             do {
-                let badge = try JSONDecoder().decode(Badge.self, from: data)
-                completion(.success(badge))
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                    let badge = try JSONDecoder().decode(Badge.self, from: data)
+                    User.saveJwt(json["jwtToken"] as? String ?? "")
+                    completion(.success(badge))
+                }
             } catch {
                 completion(.failure(error))
             }
         }
-     
     }
 
     task.resume()
@@ -146,7 +150,6 @@ func signUpUser(firstName: String, lastName: String, email: String, password: St
                 completion(.failure(error))
             }
         }
-     
     }
 
     task.resume()
@@ -162,7 +165,8 @@ func getHints(userId: String, completion: @escaping (Result<[String], Error>) ->
     
     // Create a dictionary for the request body
     let requestBody: [String: String] = [
-        "userId": userId
+        "userId": userId,
+        "jwtToken": User.getJwtToken()
     ]
     
     do {
@@ -186,6 +190,7 @@ func getHints(userId: String, completion: @escaping (Result<[String], Error>) ->
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
                     // Access the "hints" field and cast it to an array of strings
                     if let hintsArray = json["hints"] as? [String] {
+                        User.saveJwt(json["jwtToken"] as? String ?? "")
                         completion(.success(hintsArray))
                     } else {
                         print("Failed to cast 'hints' to an array of strings.")
@@ -244,8 +249,8 @@ func decode(jwtToken jwt: String) throws -> [String: Any] {
 func getUserFromJWT(jwtToken: String) -> User {
     do {
         let data = try decode(jwtToken: jwtToken)
-        return User(userId: data["userId"] as! String, email: data["email"] as! String, firstName: data["firstName"] as! String, lastName: data["lastName"] as! String, error: "", jwt: jwtToken)
+        return User(userId: data["userId"] as! String, email: data["email"] as! String, firstName: data["firstName"] as! String, lastName: data["lastName"] as! String, error: "")
     } catch {
-        return User(userId: "", email: "", firstName: "", lastName: "", error: "", jwt: "");
+        return User.initializeUser();
     }
 }

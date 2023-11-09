@@ -13,27 +13,44 @@ struct User: Codable, Equatable {
     let firstName: String
     let lastName: String
     var error: String?
-    var jwt: String?
 }
 
 extension User {
-    static var userLogin: String {
+    static var userLoginKey: String {
         return "currentUser"
+    }
+    
+    static var jwtTokenKey: String {
+        return "jwtToken"
     }
     
     static func save(_ user: User) {
        let defaults = UserDefaults.standard
        let encodedData = try! JSONEncoder().encode(user)
-       defaults.set(encodedData, forKey: User.userLogin)
+       defaults.set(encodedData, forKey: User.userLoginKey)
+    }
+    
+    static func saveJwt(_ jwtToken: String) {
+       let defaults = UserDefaults.standard
+       defaults.set(jwtToken, forKey: User.jwtTokenKey)
     }
     
     static func getUserLogin() -> User {
        let defaults = UserDefaults.standard
-       if let data = defaults.data(forKey: User.userLogin) {
+       if let data = defaults.data(forKey: User.userLoginKey) {
            let decodedUser = try! JSONDecoder().decode(User.self, from: data)
            return decodedUser
        } else {
            return initializeUser()
+       }
+    }
+    
+    static func getJwtToken() -> String {
+        let defaults = UserDefaults.standard
+        if let data = defaults.string(forKey: User.jwtTokenKey) {
+           return data
+       } else {
+           return ""
        }
     }
 
@@ -42,7 +59,7 @@ extension User {
     }
     
     static func initializeUser() -> User {
-        return User(userId: "", email: "", firstName: "", lastName: "", error: "", jwt: "")
+        return User(userId: "", email: "", firstName: "", lastName: "", error: "")
     }
 }
 
