@@ -41,8 +41,17 @@ func loginUser(email: String, password: String, completion: @escaping (Result<Us
         // Process the API response (assuming it's JSON)
         if let data = data {
             do {
-                let user = try JSONDecoder().decode(User.self, from: data)
-                completion(.success(user))
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                    var user = User.initializeUser()
+                    user.error = json["error"] as? String ?? ""
+                    let jwt = json["jwtToken"] as? String ?? ""
+                    if (jwt.count == 0) {
+                        completion(.success(user))
+                    } else {
+                        user = getUserFromJWT(jwtToken: jwt)
+                        completion(.success(user))
+                    }
+                }
             } catch {
                 completion(.failure(error))
             }
@@ -199,4 +208,44 @@ func MD5(string: String) -> String {
     return digest.map {
         String(format: "%02hhx", $0)
     }.joined()
+}
+
+func decode(jwtToken jwt: String) throws -> [String: Any] {
+
+    enum DecodeErrors: Error {
+        case badToken
+        case other
+    }
+
+    func base64Decode(_ base64: String) throws -> Data {
+        let base64 = base64
+            .replacingOccurrences(of: "-", with: "+")
+            .replacingOccurrences(of: "_", with: "/")
+        let padded = base64.padding(toLength: ((base64.count + 3) / 4) * 4, withPad: "=", startingAt: 0)
+        guard let decoded = Data(base64Encoded: padded) else {
+            throw DecodeErrors.badToken
+        }
+        return decoded
+    }
+
+    func decodeJWTPart(_ value: String) throws -> [String: Any] {
+        let bodyData = try base64Decode(value)
+        let json = try JSONSerialization.jsonObject(with: bodyData, options: [])
+        guard let payload = json as? [String: Any] else {
+            throw DecodeErrors.other
+        }
+        return payload
+    }
+
+    let segments = jwt.components(separatedBy: ".")
+    return try decodeJWTPart(segments[1])
+}
+
+func getUserFromJWT(jwtToken: String) -> User {
+    do {
+        let data = try decode(jwtToken: jwtToken)
+        return User(userId: data["userId"] as! String, email: data["email"] as! String, firstName: data["firstName"] as! String, lastName: data["lastName"] as! String, error: "", jwt: jwtToken)
+    } catch {
+        return User(userId: "", email: "", firstName: "", lastName: "", error: "", jwt: "");
+    }
 }

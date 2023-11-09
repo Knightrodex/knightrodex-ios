@@ -59,7 +59,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             case .success(let user):
                 DispatchQueue.main.async {
                     if (self.isInvalidUser(user: user)) {
-                        self.showAlert(title: "Sign Up Failed", message: user.error)
+                        self.showAlert(title: "Sign Up Failed", message: user.error!)
                         return;
                     }
                     
@@ -119,7 +119,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func isInvalidUser(user: User) -> Bool {
-        return (user.userId == "" || user.error.count > 0)
+        return (user.userId == "" || user.error!.count > 0)
     }
     
     func showAlert(title: String, message: String) {

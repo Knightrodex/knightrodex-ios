@@ -12,7 +12,8 @@ struct User: Codable, Equatable {
     let email: String
     let firstName: String
     let lastName: String
-    let error: String
+    var error: String?
+    var jwt: String?
 }
 
 extension User {
@@ -32,12 +33,16 @@ extension User {
            let decodedUser = try! JSONDecoder().decode(User.self, from: data)
            return decodedUser
        } else {
-           return User(userId: "", email: "", firstName: "", lastName: "", error: "")
+           return initializeUser()
        }
     }
 
-    func deleteUserLogin() {
-        User.save(User(userId: "", email: "", firstName: "", lastName: "", error: ""))
+    static func deleteUserLogin() {
+        User.save(initializeUser())
+    }
+    
+    static func initializeUser() -> User {
+        return User(userId: "", email: "", firstName: "", lastName: "", error: "", jwt: "")
     }
 }
 
