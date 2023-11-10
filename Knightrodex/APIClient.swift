@@ -111,44 +111,66 @@ func addBadge(userId: String, badgeId: String, completion: @escaping (Result<Bad
 }
 
 // This is the start
-func getUserProfile(userId: String, jwtToken: String) -> Void {
-    // Define the URL for Sign Up API
-    let userProfileURL = URL(string: Constant.apiPath + Constant.userProfileEndpoint)!
-
-    // Create a URLRequest
-    var request = URLRequest(url: userProfileURL)
-    request.httpMethod = "POST"
-    
-    // Create a dictionary for the request body
-    let requestBody: [String: String] = [
-        "userId": userId,
-        "jwtToken": jwtToken
-    ]
-    
-    do {
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
-    } catch {
-        return
-    }
-    
-    // Create a URLSession data task
-    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-        if let error = error {
-            return
-        }
-
-        // Process the API response (assuming it's JSON)
-        if let data = data {
-            do {
-                let userprofile = try JSONDecoder().decode(UserProfile.self, from: data)
-            } catch {
-            }
-        }
-    }
-
-    task.resume()
-}
+//func getUserProfile(userId: String, jwtToken: String) -> Void {
+//    // Define the URL for Sign Up API
+//    let userProfileURL = URL(string: Constant.apiPath + Constant.userProfileEndpoint)!
+//
+//    // Create a URLRequest
+//    var request = URLRequest(url: userProfileURL)
+//    request.httpMethod = "POST"
+//    
+//    // Create a dictionary for the request body
+//    let requestBody: [String: String] = [
+//        "userId": userId,
+//        "jwtToken": jwtToken
+//    ]
+//    
+//    do {
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+//    } catch {
+//        return
+//    }
+//    
+//    // Create a URLSession data task
+//    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+//        if let error = error {
+//            print("Request Failed: \(error.localizedDescription)")
+//            return
+//        }
+//
+//        // Process the API response (assuming it's JSON)
+//        if let data = data {
+//            do {
+//                // Decode the JSON data into our custom `UserProfile`
+//                let userprofile = try JSONDecoder().decode(UserProfile.self, from: data)
+//                
+//                // This is where some direct data can be accessed to send back to Dispatch Main
+//                // Refer to here if more data are needed in the Profile Page
+//                let userProfile = userprofile.badgesCollected
+//                
+//                // Run any code that will update UI on the main thread
+//                DispatchQueue.main.async { [weak self] in
+//                    
+//                    
+////                    self?.userProfile = userprofile
+//                    self?.userProfile = userProfile
+//                    
+//                    print("Success!!! Fetched \(userProfile.count) badges")
+//                    
+//                    
+//                    for userP in userProfile {
+//                        print("Title: \(userP.title)")
+//                    }
+//                }
+//                
+//            } catch {
+//            }
+//        }
+//    }
+//
+//    task.resume()
+//}
 
 func signUpUser(firstName: String, lastName: String, email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
     // Define the URL for Sign Up API
