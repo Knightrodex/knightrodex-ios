@@ -26,6 +26,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             switch result {
             case .success(let user):
                 DispatchQueue.main.async {
+                    print(user) 
                     if (self.isInvalidUser(user: user)) {
                         self.showAlert(title: "Login Failed", message: user.error!)
                         return;

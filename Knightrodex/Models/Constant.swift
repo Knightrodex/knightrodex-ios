@@ -13,4 +13,5 @@ enum Constant {
     static let badgeEndpoint = "/addbadge"
     static let signUpEndpoint = "/signup"
     static let hintsEndpoint = "/gethints"
+    static let userProfileEndpoint = "/showuserprofile"
 }

@@ -42,6 +42,7 @@ func loginUser(email: String, password: String, completion: @escaping (Result<Us
         if let data = data {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                    print(json)
                     var user = User.initializeUser()
                     user.error = json["error"] as? String ?? ""
                     let jwt = json["jwtToken"] as? String ?? ""
@@ -109,6 +110,45 @@ func addBadge(userId: String, badgeId: String, completion: @escaping (Result<Bad
     task.resume()
 }
 
+// This is the start
+func getUserProfile(userId: String, jwtToken: String) -> Void {
+    // Define the URL for Sign Up API
+    let userProfileURL = URL(string: Constant.apiPath + Constant.userProfileEndpoint)!
+
+    // Create a URLRequest
+    var request = URLRequest(url: userProfileURL)
+    request.httpMethod = "POST"
+    
+    // Create a dictionary for the request body
+    let requestBody: [String: String] = [
+        "userId": userId,
+        "jwtToken": jwtToken
+    ]
+    
+    do {
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+    } catch {
+        return
+    }
+    
+    // Create a URLSession data task
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        if let error = error {
+            return
+        }
+
+        // Process the API response (assuming it's JSON)
+        if let data = data {
+            do {
+                let userprofile = try JSONDecoder().decode(UserProfile.self, from: data)
+            } catch {
+            }
+        }
+    }
+
+    task.resume()
+}
 
 func signUpUser(firstName: String, lastName: String, email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
     // Define the URL for Sign Up API
