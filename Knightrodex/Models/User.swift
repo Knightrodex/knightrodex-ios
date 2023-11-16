@@ -19,48 +19,50 @@ extension User {
     static var userLoginKey: String {
         return "currentUser"
     }
-    
+
     static var jwtTokenKey: String {
         return "jwtToken"
     }
-    
+
     static func save(_ user: User) {
-       let defaults = UserDefaults.standard
-       let encodedData = try! JSONEncoder().encode(user)
-       defaults.set(encodedData, forKey: User.userLoginKey)
+        let defaults = UserDefaults.standard
+        let encodedData = try! JSONEncoder().encode(user)
+        defaults.set(encodedData, forKey: User.userLoginKey)
     }
-    
+
     static func saveJwt(_ jwtToken: String) {
-       let defaults = UserDefaults.standard
-       defaults.set(jwtToken, forKey: User.jwtTokenKey)
+        if (jwtToken.isEmpty) {
+            return
+        }
+        
+        let defaults = UserDefaults.standard
+        defaults.set(jwtToken, forKey: User.jwtTokenKey)
     }
-    
+
     static func getUserLogin() -> User {
-       let defaults = UserDefaults.standard
-       if let data = defaults.data(forKey: User.userLoginKey) {
-           let decodedUser = try! JSONDecoder().decode(User.self, from: data)
-           return decodedUser
-       } else {
-           return initializeUser()
-       }
+        let defaults = UserDefaults.standard
+        if let data = defaults.data(forKey: User.userLoginKey) {
+            let decodedUser = try! JSONDecoder().decode(User.self, from: data)
+            return decodedUser
+        } else {
+            return initializeUser()
+        }
     }
-    
+
     static func getJwtToken() -> String {
         let defaults = UserDefaults.standard
         if let data = defaults.string(forKey: User.jwtTokenKey) {
-           return data
-       } else {
-           return ""
-       }
+            return data
+        } else {
+            return ""
+        }
     }
 
     static func deleteUserLogin() {
         User.save(initializeUser())
     }
-    
+
     static func initializeUser() -> User {
         return User(userId: "", email: "", firstName: "", lastName: "", error: "")
     }
 }
-
-

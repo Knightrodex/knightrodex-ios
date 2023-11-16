@@ -19,6 +19,10 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // TODO: Remove later
+        print()
+        print("camera jwt: " + User.getJwtToken())
 
         self.setupQRCodeScanner()
     }
