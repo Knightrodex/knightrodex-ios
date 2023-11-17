@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6B0A07322AF970C90090AB31 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A07312AF970C90090AB31 /* CameraViewController.swift */; };
+		6B3F92882B07DF770086053C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3F92872B07DF770086053C /* SearchViewController.swift */; };
+		6B3F928A2B07E4EB0086053C /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3F92892B07E4EB0086053C /* UserTableViewCell.swift */; };
 		6BEDD2682AF92DA800C04F45 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BEDD2672AF92DA800C04F45 /* Constant.swift */; };
 		6BEDD26B2AF94D9900C04F45 /* HintTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BEDD26A2AF94D9900C04F45 /* HintTableViewCell.swift */; };
 		B99816C62AF9C33900389DB2 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99816C52AF9C33900389DB2 /* Badge.swift */; };
@@ -47,6 +49,8 @@
 
 /* Begin PBXFileReference section */
 		6B0A07312AF970C90090AB31 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		6B3F92872B07DF770086053C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		6B3F92892B07E4EB0086053C /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		6BEDD2672AF92DA800C04F45 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		6BEDD26A2AF94D9900C04F45 /* HintTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintTableViewCell.swift; sourceTree = "<group>"; };
 		B99816C52AF9C33900389DB2 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				6BEDD26A2AF94D9900C04F45 /* HintTableViewCell.swift */,
+				6B3F92892B07E4EB0086053C /* UserTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 				ED3F3FBF2AF5AA96003CF887 /* ScannerViewController.swift */,
 				6B0A07312AF970C90090AB31 /* CameraViewController.swift */,
 				ED4BEE582AFDC8B3002EA825 /* UserProfileViewController.swift */,
+				6B3F92872B07DF770086053C /* SearchViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -316,10 +322,12 @@
 				B99816C62AF9C33900389DB2 /* Badge.swift in Sources */,
 				EDB2DD892AEAD54000F9826E /* LoginViewController.swift in Sources */,
 				EDB2DD852AEAD54000F9826E /* AppDelegate.swift in Sources */,
+				6B3F928A2B07E4EB0086053C /* UserTableViewCell.swift in Sources */,
 				EDB2DDBB2AEADF1D00F9826E /* User.swift in Sources */,
 				6B0A07322AF970C90090AB31 /* CameraViewController.swift in Sources */,
 				EDB2DD872AEAD54000F9826E /* SceneDelegate.swift in Sources */,
 				EDB2DDB52AEADD3200F9826E /* APIClient.swift in Sources */,
+				6B3F92882B07DF770086053C /* SearchViewController.swift in Sources */,
 				ED4BEE592AFDC8B3002EA825 /* UserProfileViewController.swift in Sources */,
 				EDB2DDB72AEADE4A00F9826E /* SignUpViewController.swift in Sources */,
 				6BEDD2682AF92DA800C04F45 /* Constant.swift in Sources */,

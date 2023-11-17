@@ -150,7 +150,6 @@ func getUserProfile(userId: String, completion: @escaping (Result<UserProfile, E
                     // Decode the JSON data into our custom `UserProfile`
                     let userProfile = try JSONDecoder().decode(UserProfile.self, from: data)
                     
-                    // TODO: Update after API removes unnecessary nesting & use `json` variable if needed
                     User.saveJwt(userProfile.jwtToken)
                     
                     completion(.success(userProfile))
@@ -249,6 +248,59 @@ func getHints(userId: String, completion: @escaping (Result<[String], Error>) ->
                     } else {
                         print("Failed to cast 'hints' to an array of strings.")
                     }
+                } else {
+                    print("Failed to parse JSON data as a dictionary.")
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    task.resume()
+}
+
+func searchEmail(email: String, completion: @escaping (Result<[String: Any], Error>) -> Void) {
+    // Define the URL for Login API
+    let searchEmailURL = URL(string: Constant.apiPath + Constant.searchEmailEndpoint)!
+
+    // Create a URLRequest
+    var request = URLRequest(url: searchEmailURL)
+    request.httpMethod = "POST"
+    
+    // Create a dictionary for the request body
+    let requestBody: [String: String] = [
+        "partialEmail": email,
+        "jwtToken": User.getJwtToken()
+    ]
+    
+    do {
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+    } catch {
+        completion(.failure(error))
+        return
+    }
+
+    // Create a URLSession data task
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        if let error = error {
+            completion(.failure(error))
+            return
+        }
+
+        // Process the API response (assuming it's JSON)
+        if let data = data {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
+                    // TODO: Remove later
+                    print("Search Email Json:")
+                    print(json)
+                    
+                    // TODO: Parse Users, save jwtToken, and return user list
+                    // ...
+                    
+                    completion(.success(json))
                 } else {
                     print("Failed to parse JSON data as a dictionary.")
                 }

@@ -17,7 +17,7 @@ class ScannerViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hintsTableView.dataSource = self;
+        hintsTableView.dataSource = self
         self.refreshHints()
         
         // TODO: Remove later
