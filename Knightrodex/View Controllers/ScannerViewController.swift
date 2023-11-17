@@ -14,8 +14,15 @@ class ScannerViewController: UIViewController, UITableViewDataSource {
     var user: User = User.getUserLogin()
     var hintsArray: [String] = []
     
+    let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refreshControl.layer.zPosition = -1
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Hints...")
+        hintsTableView.refreshControl = refreshControl
         
         hintsTableView.dataSource = self
         self.refreshHints()
@@ -30,16 +37,22 @@ class ScannerViewController: UIViewController, UITableViewDataSource {
             switch result {
             case .success(let hints):
                 DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
                     self.hintsArray = hints
                     self.hintsTableView.reloadData()
                 }
             case .failure(let error):
                 print("Get Hints API Call Failed: \(error)")
                 DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
                     self.showAlert(title: "Hints Error", message: error.localizedDescription)
                 }
             }
         }
+    }
+    
+    @objc func refreshData(_ sender: Any) {
+        refreshHints()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
