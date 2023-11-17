@@ -93,7 +93,7 @@
             </objects>
             <point key="canvasLocation" x="1052.6717557251909" y="3.5211267605633805"/>
         </scene>
-        <!--Scan-->
+        <!--Hints-->
         <scene sceneID="L9P-Mz-dY6">
             <objects>
                 <viewController storyboardIdentifier="ScannerViewController" id="Ob9-Na-z5A" customClass="ScannerViewController" customModule="Knightrodex" customModuleProvider="target" sceneMemberID="viewController">
@@ -101,21 +101,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSQ-zF-Lop">
-                                <rect key="frame" x="116" y="641" width="161" height="81"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSQ-zF-Lop">
+                                <rect key="frame" x="171.66666666666666" y="723.66666666666663" width="50" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled">
                                     <imageReference key="image" image="qrcode.viewfinder" catalog="system" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="Rii-Ow-bwZ" kind="show" id="yEg-q8-sar"/>
+                                    <segue destination="Rii-Ow-bwZ" kind="presentation" id="yEg-q8-sar"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="O8T-8P-xmk">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="633"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="O8T-8P-xmk">
+                                <rect key="frame" x="0.0" y="56" width="393" height="637.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HintTableViewCell" rowHeight="122" id="zcW-d4-Od2" customClass="HintTableViewCell" customModule="Knightrodex" customModuleProvider="target">
@@ -148,15 +146,23 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wcA-Ue-0Xu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="O8T-8P-xmk" firstAttribute="top" secondItem="wcA-Ue-0Xu" secondAttribute="top" id="6Op-Vz-8o7"/>
+                            <constraint firstItem="O8T-8P-xmk" firstAttribute="leading" secondItem="wcA-Ue-0Xu" secondAttribute="leading" id="HXj-iD-p8V"/>
+                            <constraint firstItem="DSQ-zF-Lop" firstAttribute="top" secondItem="O8T-8P-xmk" secondAttribute="bottom" constant="30" id="JeG-GT-IEx"/>
+                            <constraint firstItem="DSQ-zF-Lop" firstAttribute="centerX" secondItem="wcA-Ue-0Xu" secondAttribute="centerX" id="JoB-5j-NEo"/>
+                            <constraint firstItem="wcA-Ue-0Xu" firstAttribute="trailing" secondItem="O8T-8P-xmk" secondAttribute="trailing" id="aOq-mA-FUG"/>
+                            <constraint firstItem="wcA-Ue-0Xu" firstAttribute="bottom" secondItem="DSQ-zF-Lop" secondAttribute="bottom" constant="45" id="sz2-Ju-fbZ"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Scan" image="camera.fill" catalog="system" id="HjK-Di-4uF"/>
+                    <navigationItem key="navigationItem" title="Hints" id="D8Z-Cd-FIp"/>
                     <connections>
                         <outlet property="hintsTableView" destination="O8T-8P-xmk" id="0cF-fB-Etw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="djF-w8-XRK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3777.8625954198474" y="741.54929577464793"/>
+            <point key="canvasLocation" x="3777.8625954198474" y="1557.7464788732395"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="9bj-Hc-19n">
@@ -174,18 +180,18 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JPP-GT-fEM">
-                                <rect key="frame" x="16" y="56" width="361" height="766"/>
+                                <rect key="frame" x="0.0" y="56" width="393" height="766"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTableViewCell" rowHeight="116" id="vA8-fu-HOW" customClass="UserTableViewCell" customModule="Knightrodex" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="361" height="116"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="116"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vA8-fu-HOW" id="fB0-yU-LmK">
-                                            <rect key="frame" x="0.0" y="0.0" width="361" height="116"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="116"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOC-zZ-TsE">
-                                                    <rect key="frame" x="268" y="41" width="73" height="34.333333333333343"/>
+                                                    <rect key="frame" x="300" y="41" width="73" height="34.333333333333343"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="filled" title="Follow"/>
                                                     <connections>
@@ -223,11 +229,11 @@
                             <constraint firstItem="X2Z-Jf-YHn" firstAttribute="centerX" secondItem="iai-jZ-rqs" secondAttribute="centerX" id="6iJ-e0-FgK"/>
                             <constraint firstItem="iai-jZ-rqs" firstAttribute="bottom" secondItem="JPP-GT-fEM" secondAttribute="bottom" constant="20" id="GhK-cz-KhE"/>
                             <constraint firstItem="iai-jZ-rqs" firstAttribute="trailing" secondItem="X2Z-Jf-YHn" secondAttribute="trailing" id="LcK-8X-4RI"/>
-                            <constraint firstItem="iai-jZ-rqs" firstAttribute="trailing" secondItem="JPP-GT-fEM" secondAttribute="trailing" constant="16" id="UEy-1o-G1y"/>
+                            <constraint firstItem="iai-jZ-rqs" firstAttribute="trailing" secondItem="JPP-GT-fEM" secondAttribute="trailing" id="UEy-1o-G1y"/>
                             <constraint firstItem="X2Z-Jf-YHn" firstAttribute="top" secondItem="iai-jZ-rqs" secondAttribute="top" id="iIQ-ta-cKQ"/>
                             <constraint firstItem="JPP-GT-fEM" firstAttribute="top" secondItem="X2Z-Jf-YHn" secondAttribute="bottom" id="px6-KB-qHL"/>
                             <constraint firstItem="X2Z-Jf-YHn" firstAttribute="leading" secondItem="iai-jZ-rqs" secondAttribute="leading" id="qm7-Or-6Hx"/>
-                            <constraint firstItem="JPP-GT-fEM" firstAttribute="leading" secondItem="iai-jZ-rqs" secondAttribute="leading" constant="16" id="uOc-ls-0eO"/>
+                            <constraint firstItem="JPP-GT-fEM" firstAttribute="leading" secondItem="iai-jZ-rqs" secondAttribute="leading" id="uOc-ls-0eO"/>
                         </constraints>
                     </view>
                     <connections>
@@ -237,34 +243,77 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="50b-rO-3J7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2426.7175572519081" y="1557.7464788732395"/>
+            <point key="canvasLocation" x="2427" y="2279"/>
         </scene>
         <!--Home-->
         <scene sceneID="sct-9C-IYV">
             <objects>
-                <viewController id="uZc-fu-Rtl" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="uZc-fu-Rtl" customClass="HomeViewController" customModule="Knightrodex" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XAr-WJ-jVb">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pso-RE-sKf">
-                                <rect key="frame" x="145" y="404" width="103" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="magnifyingglass" catalog="system" title="Search"/>
-                                <connections>
-                                    <segue destination="zx8-SB-BJ1" kind="presentation" id="T2k-AU-Kpz"/>
-                                </connections>
-                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zgM-Qo-ApN">
+                                <rect key="frame" x="0.0" y="56" width="393" height="747"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityTableViewCell" rowHeight="113" id="vzM-91-oKo" customClass="ActivityTableViewCell" customModule="Knightrodex" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="113"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vzM-91-oKo" id="a2O-BE-pZY">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="113"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pe3-kb-zA7">
+                                                    <rect key="frame" x="16" y="16" width="361" height="81"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Pe3-kb-zA7" secondAttribute="trailing" constant="16" id="0zN-pi-nS1"/>
+                                                <constraint firstItem="Pe3-kb-zA7" firstAttribute="leading" secondItem="a2O-BE-pZY" secondAttribute="leading" constant="16" id="6Ut-Oc-asP"/>
+                                                <constraint firstItem="Pe3-kb-zA7" firstAttribute="top" secondItem="a2O-BE-pZY" secondAttribute="top" constant="16" id="Nts-yQ-Mak"/>
+                                                <constraint firstAttribute="bottom" secondItem="Pe3-kb-zA7" secondAttribute="bottom" constant="16" id="wAt-xS-4wb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="Pe3-kb-zA7" id="gs9-9D-1q7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ThR-gl-576"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ThR-gl-576" firstAttribute="trailing" secondItem="zgM-Qo-ApN" secondAttribute="trailing" id="AVl-d4-BPd"/>
+                            <constraint firstItem="zgM-Qo-ApN" firstAttribute="top" secondItem="ThR-gl-576" secondAttribute="top" id="NTj-F6-1YW"/>
+                            <constraint firstItem="zgM-Qo-ApN" firstAttribute="leading" secondItem="ThR-gl-576" secondAttribute="leading" id="a5G-6e-j7B"/>
+                            <constraint firstItem="ThR-gl-576" firstAttribute="bottom" secondItem="zgM-Qo-ApN" secondAttribute="bottom" id="ypO-8O-r9W"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="2ar-1m-3YP"/>
+                    <navigationItem key="navigationItem" title="Home" id="N9z-Rb-n4t">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="UdN-Uy-Stp">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="0Eq-tu-jCy">
+                                <rect key="frame" x="290" y="10.666666666666664" width="87" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="magnifyingglass" catalog="system"/>
+                                <connections>
+                                    <segue destination="zx8-SB-BJ1" kind="presentation" id="gF4-3I-9Jd"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="activityTableView" destination="zgM-Qo-ApN" id="0Qc-Fp-sBH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PRw-fe-eio" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2427" y="742"/>
+            <point key="canvasLocation" x="2426.7175572519081" y="1557.7464788732395"/>
         </scene>
         <!--Profile-->
         <scene sceneID="gLh-ht-0NG">
@@ -311,7 +360,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ils-Q0-kv3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5151.9083969465646" y="741.54929577464793"/>
+            <point key="canvasLocation" x="5091" y="742"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zdy-FA-u40">
@@ -324,8 +373,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="uZc-fu-Rtl" kind="relationship" relationship="viewControllers" id="Vfb-Wj-81B"/>
-                        <segue destination="Ob9-Na-z5A" kind="relationship" relationship="viewControllers" id="kkn-Iz-HHK"/>
+                        <segue destination="V0y-qd-lUT" kind="relationship" relationship="viewControllers" id="Vfb-Wj-81B"/>
+                        <segue destination="3KG-bP-FPB" kind="relationship" relationship="viewControllers" id="kkn-Iz-HHK"/>
                         <segue destination="url-rX-dDl" kind="relationship" relationship="viewControllers" id="EJP-LX-IO9"/>
                     </connections>
                 </tabBarController>
@@ -518,7 +567,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDJ-25-ch1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3778" y="1559"/>
+            <point key="canvasLocation" x="3778" y="2279"/>
+        </scene>
+        <!--Scan-->
+        <scene sceneID="EN7-sh-LMs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3KG-bP-FPB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Scan" image="camera.fill" catalog="system" id="HjK-Di-4uF"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xtm-pR-uZf">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ob9-Na-z5A" kind="relationship" relationship="rootViewController" id="0es-Ns-8V8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ed-jC-hLY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3777.8625954198474" y="741.54929577464793"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="p8D-b9-OoI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="V0y-qd-lUT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="2ar-1m-3YP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C7k-e5-GcV">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uZc-fu-Rtl" kind="relationship" relationship="rootViewController" id="Lei-K5-dJc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M99-vP-MUu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2427" y="742"/>
         </scene>
     </scenes>
     <resources>

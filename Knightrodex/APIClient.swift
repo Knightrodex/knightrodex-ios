@@ -260,6 +260,7 @@ func getHints(userId: String, completion: @escaping (Result<[String], Error>) ->
     task.resume()
 }
 
+// TODO: Change completion success return type
 func searchEmail(email: String, completion: @escaping (Result<[String: Any], Error>) -> Void) {
     // Define the URL for Login API
     let searchEmailURL = URL(string: Constant.apiPath + Constant.searchEmailEndpoint)!
@@ -298,6 +299,60 @@ func searchEmail(email: String, completion: @escaping (Result<[String: Any], Err
                     print(json)
                     
                     // TODO: Parse Users, save jwtToken, and return user list
+                    // ...
+                    
+                    completion(.success(json))
+                } else {
+                    print("Failed to parse JSON data as a dictionary.")
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    task.resume()
+}
+
+// TODO: Change completion success return type
+func getActivity(userId: String, completion: @escaping (Result<[String: Any], Error>) -> Void) {
+    // Define the URL for Login API
+    let getActivityURL = URL(string: Constant.apiPath + Constant.getActivityEndpoint)!
+
+    // Create a URLRequest
+    var request = URLRequest(url: getActivityURL)
+    request.httpMethod = "POST"
+    
+    // Create a dictionary for the request body
+    let requestBody: [String: String] = [
+        "userId": userId,
+        "jwtToken": User.getJwtToken()
+    ]
+    
+    do {
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+    } catch {
+        completion(.failure(error))
+        return
+    }
+
+    // Create a URLSession data task
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        if let error = error {
+            completion(.failure(error))
+            return
+        }
+
+        // Process the API response (assuming it's JSON)
+        if let data = data {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
+                    // TODO: Remove later
+                    print("Get Activity Json:")
+                    print(json)
+                    
+                    // TODO: Parse Activity, save jwtToken, and return activity list
                     // ...
                     
                     completion(.success(json))
