@@ -151,7 +151,7 @@ func getUserProfile(userId: String, completion: @escaping (Result<UserProfile, E
                     let userProfile = try JSONDecoder().decode(UserProfile.self, from: data)
                     
                     // TODO: Update after API removes unnecessary nesting & use `json` variable if needed
-                    User.saveJwt(userProfile.jwtToken.jwtToken)
+                    User.saveJwt(userProfile.jwtToken)
                     
                     completion(.success(userProfile))
                 }

@@ -13,7 +13,7 @@ struct UserProfile: Codable {
     let usersFollowed: [String]
     let dateCreated: String
     let badgesCollected: [BadgesCollected]
-    let jwtToken: JwtToken
+    let jwtToken: String
     let error: String
 
     enum CodingKeys: String, CodingKey {
@@ -34,9 +34,4 @@ struct BadgesCollected: Codable {
         case id = "_id"
         case title, dateCreated, dateExpired, description, limit, dateObtained, uniqueNumber
     }
-}
-
-// MARK: - JwtToken
-struct JwtToken: Codable {
-    let jwtToken, error: String
 }
