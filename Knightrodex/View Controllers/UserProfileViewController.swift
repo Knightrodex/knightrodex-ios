@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Nuke
 
 class UserProfileViewController: UIViewController, UITableViewDataSource {
     
@@ -68,6 +69,15 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
                     self.tableView.reloadData()
                     self.nameLabel.text = "\(firstName) \(lastName)"
                     self.numberFollowedUser.text = "\(noFollowedUsers) Followed Users"
+                    
+                    
+                    // Just for testing purposes:
+                    
+                    let imageUrl = URL(string: "https://www.shareicon.net/data/512x512/2016/05/26/771188_man_512x512.png")
+                    
+                    Nuke.loadImage(with: imageUrl!, into: self.userProfileAvatar)
+                    
+                    
 
                     // TODO: Remove later
                     print("Success! Fetched \(badges.count) badges")
@@ -92,11 +102,16 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
         // Create, configure, and return a table view cell for the given row (i.e., `indexPath.row`)
         
         // Create the cell
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BadgeCell", for: indexPath) as! BadgeCell
         
         let badge = badges[indexPath.row]
         
-        cell.textLabel?.text = badge.title
+//        cell.titleLabel.text = badge.title
+        
+        cell.titleLabel.text = badge.title
+        
+        
+        
         
         return cell
     }
