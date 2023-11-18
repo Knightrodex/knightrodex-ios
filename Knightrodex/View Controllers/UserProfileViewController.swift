@@ -40,6 +40,17 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
         self.refreshProfile()
     }
     
+    // This is for sending the badge details over t the Details View Controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let selectedIndexPath = tableView.indexPathForSelectedRow else { return }
+        
+        let selectedBadge = badges[selectedIndexPath.row]
+        
+        guard let detailViewController = segue.destination as? DetailViewController else { return }
+        
+        detailViewController.badge = selectedBadge
+    }
+    
     func refreshProfile() {
         getUserProfile(userId: user.userId) { result in
             switch result {
@@ -72,7 +83,6 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
                     
                     
                     // Just for testing purposes:
-                    
                     let imageUrl = URL(string: "https://www.shareicon.net/data/512x512/2016/05/26/771188_man_512x512.png")
                     
                     Nuke.loadImage(with: imageUrl!, into: self.userProfileAvatar)
@@ -107,6 +117,10 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
         let badge = badges[indexPath.row]
         
 //        cell.titleLabel.text = badge.title
+        
+        let imageUrl = URL(string: "https://i.ebayimg.com/images/g/xY8AAOSweFtlQUMn/s-l1600.png")
+        
+        Nuke.loadImage(with: imageUrl!, into: cell.posterImageView)
         
         cell.titleLabel.text = badge.title
         

@@ -6,24 +6,37 @@
 //
 
 import UIKit
+import Nuke
 
 class DetailViewController: UIViewController {
+    
+    
+    // May have to remove this!
+    var badge: BadgesCollected!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var posterImage: UIImageView!
+    @IBOutlet weak var dateObtainedLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var badgeNumberLabel: UILabel!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        titleLabel.text = badge.title
+        dateObtainedLabel.text = badge.dateObtained
+        locationLabel.text = "Somewhere"
+        descriptionLabel.text = badge.description
+        badgeNumberLabel.text = "Badge Number: \(badge.uniqueNumber)"
+        
+        // Those are just for testing purposes:
+        let imageUrl = URL(string: "https://i.ebayimg.com/images/g/xY8AAOSweFtlQUMn/s-l1600.png")
+        
+        Nuke.loadImage(with: imageUrl!, into: posterImage)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
