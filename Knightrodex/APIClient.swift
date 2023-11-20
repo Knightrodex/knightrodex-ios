@@ -208,6 +208,98 @@ func signUpUser(firstName: String, lastName: String, email: String, password: St
     task.resume()
 }
 
+func sendResetCode(email: String, completion: @escaping (Result<String, Error>) -> Void) {
+    // Define the URL for Send Reset Code API
+    let sendResetCodeURL = URL(string: Constant.apiPath + Constant.sendResetCodeEndpoint)!
+
+    // Create a URLRequest
+    var request = URLRequest(url: sendResetCodeURL)
+    request.httpMethod = "POST"
+    
+    // Create a dictionary for the request body
+    let requestBody: [String: String] = [
+        "email": email,
+    ]
+    
+    do {
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+    } catch {
+        completion(.failure(error))
+        return
+    }
+    
+    // Create a URLSession data task
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        if let error = error {
+            completion(.failure(error))
+            return
+        }
+
+        // Process the API response (assuming it's JSON)
+        if let data = data {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
+                    completion(.success(json["error"] as? String ?? ""))
+                } else {
+                    print("Failed to parse JSON data as a dictionary.")
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    task.resume()
+}
+
+func updatePassword(email: String, resetCode: Int, newPassword: String, completion: @escaping (Result<String, Error>) -> Void) {
+    // Define the URL for Update Password API
+    let updatePasswordURL = URL(string: Constant.apiPath + Constant.updatePasswordEndpoint)!
+
+    // Create a URLRequest
+    var request = URLRequest(url: updatePasswordURL)
+    request.httpMethod = "POST"
+    
+    // Create a dictionary for the request body
+    let requestBody: [String: Any] = [
+        "email": email,
+        "userReset": resetCode,
+        "newPassword": MD5(string: newPassword)
+    ]
+    
+    do {
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+    } catch {
+        completion(.failure(error))
+        return
+    }
+    
+    // Create a URLSession data task
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        if let error = error {
+            completion(.failure(error))
+            return
+        }
+
+        // Process the API response (assuming it's JSON)
+        if let data = data {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
+                    completion(.success(json["error"] as? String ?? ""))
+                } else {
+                    print("Failed to parse JSON data as a dictionary.")
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    task.resume()
+}
+
 func getHints(userId: String, completion: @escaping (Result<[String], Error>) -> Void) {
     // Define the URL for Login API
     let hintsURL = URL(string: Constant.apiPath + Constant.hintsEndpoint)!

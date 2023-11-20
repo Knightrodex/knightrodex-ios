@@ -16,4 +16,6 @@ enum Constant {
     static let userProfileEndpoint = "/showuserprofile"
     static let searchEmailEndpoint = "/searchemail"
     static let getActivityEndpoint = "/getactivity"
+    static let sendResetCodeEndpoint = "/passwordsend"
+    static let updatePasswordEndpoint = "/passwordupdate"
 }
