@@ -18,4 +18,6 @@ enum Constant {
     static let getActivityEndpoint = "/getactivity"
     static let sendResetCodeEndpoint = "/passwordsend"
     static let updatePasswordEndpoint = "/passwordupdate"
+    static let followUserEndpoint = "/followuser"
+    static let unfollowUserEndpoint = "/unfollowuser"
 }

@@ -30,13 +30,27 @@ class UserTableViewCell: UITableViewCell {
     }
     
     @IBAction func didTapFollowButton(_ sender: Any) {
-        // TODO: Make API request to follow/unfollow
-        // ...
+        followButton.isUserInteractionEnabled = false
         
-        isFollowed = !isFollowed
-        checkButtonStyle()
-        
-        print("follow " + nameLabel.text!)
+        updateFollowStatus(currentUserId: User.getUserLogin().userId, otherUserId: user.userId, shouldFollow: !isFollowed) { result in
+            switch result {
+            case .success(let error):
+                DispatchQueue.main.async {
+                    if (!error.isEmpty) {
+                        print("Follow/Unfollow API Call Failed: \(error)")
+                        return
+                    }
+                    self.isFollowed = !self.isFollowed
+                    self.checkButtonStyle()
+                    self.followButton.isUserInteractionEnabled = true
+                }
+            case .failure(let error):
+                print("Follow/Unfollow API Call Error: \(error)")
+                DispatchQueue.main.async {
+                    self.followButton.isUserInteractionEnabled = true
+                }
+            }
+        }
     }
     
     func setUserJson(json: [String: Any]) {
@@ -57,9 +71,9 @@ class UserTableViewCell: UITableViewCell {
             checkButtonStyle()
             
             self.emailLabel.text = user.email
-            self.nameLabel.text = user.firstName + " " + user.lastName
+            self.nameLabel.text = "\(user.firstName) \(user.lastName)"
         } catch {
-            print("Parsing Error: " + error.localizedDescription)
+            print("Parsing Error: \(error.localizedDescription)")
         }
     }
     

@@ -400,6 +400,54 @@ func searchEmail(userId: String, email: String, completion: @escaping (Result<[[
     task.resume()
 }
 
+func updateFollowStatus(currentUserId: String, otherUserId: String, shouldFollow: Bool, completion: @escaping (Result<String, Error>) -> Void) {
+    // Define the URL for Login API
+    let changeFollowStatusURL = URL(string: Constant.apiPath + (shouldFollow ? Constant.followUserEndpoint : Constant.unfollowUserEndpoint))!
+
+    // Create a URLRequest
+    var request = URLRequest(url: changeFollowStatusURL)
+    request.httpMethod = "POST"
+    
+    // Create a dictionary for the request body
+    let requestBody: [String: String] = [
+        "currentUserId": currentUserId,
+        "otherUserId": otherUserId,
+        "jwtToken": User.getJwtToken()
+    ]
+    
+    do {
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+    } catch {
+        completion(.failure(error))
+        return
+    }
+
+    // Create a URLSession data task
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        if let error = error {
+            completion(.failure(error))
+            return
+        }
+
+        // Process the API response (assuming it's JSON)
+        if let data = data {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
+                    User.saveJwt(json["jwtToken"] as? String ?? "")
+                    completion(.success(json["error"] as? String ?? ""))
+                } else {
+                    print("Failed to parse JSON data as a dictionary.")
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    task.resume()
+}
+
 // TODO: Change completion success return type
 func getActivity(userId: String, completion: @escaping (Result<[String: Any], Error>) -> Void) {
     // Define the URL for Login API

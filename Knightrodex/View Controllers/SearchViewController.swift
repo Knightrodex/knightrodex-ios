@@ -14,7 +14,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     
     var user = User.getUserLogin()
     
-    // TODO: Change struct type after API changes
     var usersArray: [[String: Any]] = []
     
     override func viewDidLoad() {
