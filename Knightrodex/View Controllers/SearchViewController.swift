@@ -12,10 +12,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var usersTableView: UITableView!
     
+    var user = User.getUserLogin()
+    
     // TODO: Change struct type after API changes
-    var usersArray: [User] = [User(userId: "1", email: "max@email.com", firstName: "Max", lastName: "Bagatini Alves"),
-                              User(userId: "2", email: "ramir@email.com", firstName: "Ramir", lastName: "Dalencour"),
-                              User(userId: "3", email: "steven@email.com", firstName: "Steven", lastName: "Grady")]
+    var usersArray: [[String: Any]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +30,20 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     }
     
     func refreshSearch() {
-        // TODO: Perform API call
-        // ...
+        searchEmail(userId: user.userId, email: searchBar.text!) { result in
+            switch result {
+            case .success(let json):
+                DispatchQueue.main.async {
+                    self.usersArray = json
+                    self.usersTableView.reloadData()
+                }
+            case .failure(let error):
+                print("Search Email API Call Error: \(error)")
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Search Email Error", message: error.localizedDescription)
+                }
+            }
+        }
         
         usersTableView.reloadData()
     }
@@ -52,9 +64,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserTableViewCell", for: indexPath) as! UserTableViewCell
         
         let user = usersArray[indexPath.row]
-        cell.nameLabel.text = user.firstName + " " + user.lastName
-        // TODO: Check if user is already followed or not
-        // ...
+        cell.setUserJson(json: user)
         
         return cell
     }

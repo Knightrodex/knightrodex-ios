@@ -5,12 +5,18 @@
 //  Created by Max Bagatini Alves on 11/17/23.
 //
 
+import Nuke
 import UIKit
 
 class UserTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var userProfileAvatar: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
+    
+    var user: User = User.initializeUser()
+    var isFollowed = false;
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,11 +30,48 @@ class UserTableViewCell: UITableViewCell {
     }
     
     @IBAction func didTapFollowButton(_ sender: Any) {
-        // TODO: Check if followed or not and change text/image
+        // TODO: Make API request to follow/unfollow
         // ...
+        
+        isFollowed = !isFollowed
+        checkButtonStyle()
         
         print("follow " + nameLabel.text!)
     }
     
-
+    func setUserJson(json: [String: Any]) {
+        do {
+//            let data = try JSONSerialization.data(withJSONObject: json, options: [])
+//            user = try JSONDecoder().decode(User.self, from: data)
+            user = User.init(userId: json["_id"] as? String ?? "",
+                             email: json["email"] as? String ?? "",
+                             firstName: json["firstName"] as? String ?? "",
+                             lastName: json["lastName"] as? String ?? "")
+            isFollowed = ((json["isFollowed"] as? NSNumber ?? 0).intValue == 1)
+            
+            let profileImgURL = URL(string: json["profilePicture"] as? String ?? "")
+            if (profileImgURL != nil) {
+                Nuke.loadImage(with: profileImgURL!, into: self.userProfileAvatar)
+            }
+            
+            checkButtonStyle()
+            
+            self.emailLabel.text = user.email
+            self.nameLabel.text = user.firstName + " " + user.lastName
+        } catch {
+            print("Parsing Error: " + error.localizedDescription)
+        }
+    }
+    
+    func checkButtonStyle() {
+        if (isFollowed) {
+            followButton.setTitle("Unfollow", for: UIControl.State.normal)
+            followButton.sizeToFit()
+            followButton.tintColor = UIColor.gray
+        } else {
+            followButton.setTitle("Follow", for: UIControl.State.normal)
+            followButton.sizeToFit()
+            followButton.tintColor = UIColor.systemBlue
+        }
+    }
 }

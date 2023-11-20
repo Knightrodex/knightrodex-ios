@@ -352,8 +352,7 @@ func getHints(userId: String, completion: @escaping (Result<[String], Error>) ->
     task.resume()
 }
 
-// TODO: Change completion success return type
-func searchEmail(email: String, completion: @escaping (Result<[String: Any], Error>) -> Void) {
+func searchEmail(userId: String, email: String, completion: @escaping (Result<[[String: Any]], Error>) -> Void) {
     // Define the URL for Login API
     let searchEmailURL = URL(string: Constant.apiPath + Constant.searchEmailEndpoint)!
 
@@ -363,6 +362,7 @@ func searchEmail(email: String, completion: @escaping (Result<[String: Any], Err
     
     // Create a dictionary for the request body
     let requestBody: [String: String] = [
+        "requesterUserId": userId,
         "partialEmail": email,
         "jwtToken": User.getJwtToken()
     ]
@@ -386,14 +386,8 @@ func searchEmail(email: String, completion: @escaping (Result<[String: Any], Err
         if let data = data {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
-                    // TODO: Remove later
-                    print("Search Email Json:")
-                    print(json)
-                    
-                    // TODO: Parse Users, save jwtToken, and return user list
-                    // ...
-                    
-                    completion(.success(json))
+                    User.saveJwt(json["jwtToken"] as? String ?? "")
+                    completion(.success(json["result"] as? [[String: Any]] ?? []))
                 } else {
                     print("Failed to parse JSON data as a dictionary.")
                 }
