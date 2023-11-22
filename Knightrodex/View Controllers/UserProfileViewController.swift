@@ -10,6 +10,13 @@ import Nuke
 
 class UserProfileViewController: UIViewController, UITableViewDataSource {
     
+    
+    
+    @IBOutlet weak var emptyBadgesLabel: UILabel!
+    
+    
+    
+    
     // This is in testing stages so far:
     @IBOutlet weak var userProfileAvatar: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -38,6 +45,8 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
         
         tableView.dataSource = self
         self.refreshProfile()
+        
+        
     }
     
     // This is for sending the badge details over t the Details View Controller
@@ -78,6 +87,10 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
                     
                     // This is in testing stages so far:
                     self.tableView.reloadData()
+                    
+                    
+                    
+                    
                     self.nameLabel.text = "\(firstName) \(lastName)"
                     self.numberFollowedUser.text = "\(noFollowedUsers) Followed Users"
                     
@@ -94,6 +107,14 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
                     print()
                     print("New JWT:")
                     print(User.getJwtToken())
+                    
+                    
+                    // Add the defer statement here in case of empty badges array
+                    defer {
+                        self.emptyBadgesLabel.isHidden = !badges.isEmpty
+                    }
+                    
+                    
                 }
             case .failure(let error):
                 print("Show User Profile API Call Error: \(error)")
