@@ -10,18 +10,15 @@ import Nuke
 
 class UserProfileViewController: UIViewController, UITableViewDataSource {
     
-    
-    
     @IBOutlet weak var emptyBadgesLabel: UILabel!
-    
-    
-    
     
     // This is in testing stages so far:
     @IBOutlet weak var userProfileAvatar: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var numberFollowedUser: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
+    let refreshControl = UIRefreshControl()
 
     private var user = User.getUserLogin()
     
@@ -43,10 +40,13 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
         print()
         print("profile jwt: " + User.getJwtToken())
         
+        refreshControl.layer.zPosition = -1
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Profile...")
+        tableView.refreshControl = refreshControl
+        
         tableView.dataSource = self
         self.refreshProfile()
-        
-        
     }
     
     // This is for sending the badge details over t the Details View Controller
@@ -88,41 +88,39 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
                     // This is in testing stages so far:
                     self.tableView.reloadData()
                     
-                    
-                    
-                    
                     self.nameLabel.text = "\(firstName) \(lastName)"
                     self.numberFollowedUser.text = "\(noFollowedUsers) Followed Users"
-                    
                     
                     // Just for testing purposes:
                     let imageUrl = URL(string: "https://www.shareicon.net/data/512x512/2016/05/26/771188_man_512x512.png")
                     
                     Nuke.loadImage(with: imageUrl!, into: self.userProfileAvatar)
                     
-                    
-
                     // TODO: Remove later
                     print("Success! Fetched \(badges.count) badges")
                     print()
                     print("New JWT:")
                     print(User.getJwtToken())
                     
-                    
                     // Add the defer statement here in case of empty badges array
                     defer {
                         self.emptyBadgesLabel.isHidden = !badges.isEmpty
                     }
                     
-                    
+                    self.refreshControl.endRefreshing()
                 }
             case .failure(let error):
                 print("Show User Profile API Call Error: \(error)")
                 DispatchQueue.main.async {
                     self.showAlert(title: "User Profile Error", message: error.localizedDescription)
+                    self.refreshControl.endRefreshing()
                 }
             }
         }
+    }
+    
+    @objc func refreshData(_ sender: Any) {
+        refreshProfile()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -137,16 +135,11 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
         
         let badge = badges[indexPath.row]
         
-//        cell.titleLabel.text = badge.title
-        
         let imageUrl = URL(string: "https://i.ebayimg.com/images/g/xY8AAOSweFtlQUMn/s-l1600.png")
         
         Nuke.loadImage(with: imageUrl!, into: cell.posterImageView)
         
         cell.titleLabel.text = badge.title
-        
-        
-        
         
         return cell
     }
