@@ -4,8 +4,6 @@
 <dict>
 	<key></key>
 	<string></string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Access to camera for badge scanning.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

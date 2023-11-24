@@ -14,7 +14,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     let map = MKMapView()
     
     // We can come here and just plug in the location...
-    let coordinate = CLLocationCoordinate2D(latitude: 40.728, longitude: -74)
+    let coordinate = CLLocationCoordinate2D(latitude: 28.6024, longitude: -81.2001)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +39,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     private func addCustomPin() {
         let pin = MKPointAnnotation()
         pin.coordinate = coordinate
-        pin.title = "Pokemon Here"
+        pin.title = "UCF Here"
         pin.subtitle = "Go and catch them all"
+        
+        
         
         map.addAnnotation(pin)
     }
@@ -65,11 +67,38 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         
         
-        annotationView?.image = UIImage(named: "ucf")
-        
-        
-        
+        // Resize the image
+        let customImage = UIImage(named: "ucf")
+        let resizedImage = resizeImage(image: customImage, targetSize: CGSize(width: 40, height: 40))
+        annotationView?.image = resizedImage
+                
         return annotationView
     }
     
+        // Function to resize an image
+        func resizeImage(image: UIImage?, targetSize: CGSize) -> UIImage? {
+            guard let image = image else {
+                return nil
+            }
+
+            let size = image.size
+            let widthRatio  = targetSize.width  / size.width
+            let heightRatio = targetSize.height / size.height
+
+            let newSize: CGSize
+            if widthRatio > heightRatio {
+                newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+            } else {
+                newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+            }
+
+            let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+            UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+            image.draw(in: rect)
+            let newImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+
+            return newImage
+        }
 }
