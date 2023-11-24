@@ -123,6 +123,13 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
         refreshProfile()
     }
     
+    @IBAction func didTapLogOut(_ sender: Any) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        self.view.window?.rootViewController = viewController
+        self.view.window?.makeKeyAndVisible()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return badges.count
     }

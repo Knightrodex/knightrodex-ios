@@ -55,12 +55,9 @@ class UserTableViewCell: UITableViewCell {
     
     func setUserJson(json: [String: Any]) {
         do {
-//            let data = try JSONSerialization.data(withJSONObject: json, options: [])
-//            user = try JSONDecoder().decode(User.self, from: data)
-            user = User.init(userId: json["_id"] as? String ?? "",
-                             email: json["email"] as? String ?? "",
-                             firstName: json["firstName"] as? String ?? "",
-                             lastName: json["lastName"] as? String ?? "")
+            let data = try JSONSerialization.data(withJSONObject: json, options: [])
+            user = try JSONDecoder().decode(User.self, from: data)
+            
             isFollowed = ((json["isFollowed"] as? NSNumber ?? 0).intValue == 1)
             
             let profileImgURL = URL(string: json["profilePicture"] as? String ?? "")

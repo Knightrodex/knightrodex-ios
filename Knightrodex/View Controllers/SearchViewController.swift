@@ -51,7 +51,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         // TODO: Test if keyboard disappears on physical phone
         // ...
         
-        print(searchText)
         refreshSearch()
     }
     
