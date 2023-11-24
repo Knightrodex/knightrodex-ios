@@ -14,14 +14,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     let refreshControl = UIRefreshControl()
     
     var user = User.getUserLogin()
-    // TODO: Change data type after API changes
-    var activityArray: [String] = ["You obtained the \"Spirit Splash 2023\" Badge - (1 min ago)",
-                                   "Ramir obtained the \"Spirit Splash 2023\" Badge - (3 hrs ago)",
-                                   "Steven obtained the \"Spirit Splash 2023\" Badge - (1 day ago)",
-                                   "Caleb obtained the \"Spirit Splash 2023\" Badge - (5 days ago)",
-                                   "Ethan obtained the \"Bachata 4 Life\" Badge - (11/09/2023)",
-                                   "Zach obtained the \"G.O.A.T.\" Badge - (09/10/2023)",
-                                   "Caden obtained the \"The Band\" Badge - (06/20/2023)"]
+    var activityArray: [Activity] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +33,22 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     }
     
     func refreshActivity() {
-        // TODO: Perform API call
-        // ...
-        refreshControl.endRefreshing()
-        activityTableView.reloadData()
+        getActivity(userId: user.userId) { result in
+            switch result {
+            case .success(let activities):
+                DispatchQueue.main.async {
+                    self.activityArray = activities
+                    self.refreshControl.endRefreshing()
+                    self.activityTableView.reloadData()
+                }
+            case .failure(let error):
+                print("Get Activity API Call Error: \(error)")
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Activity Error", message: error.localizedDescription)
+                    self.refreshControl.endRefreshing()
+                }
+            }
+        }
     }
     
     @objc func refreshData(_ sender: Any) {
@@ -57,9 +62,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityTableViewCell", for: indexPath) as! ActivityTableViewCell
         
-        // TODO: Improve later
-        cell.label.text = activityArray[indexPath.row]
-        
+        cell.setActivity(activityArray[indexPath.row])
         return cell
     }
     

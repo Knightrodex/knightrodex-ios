@@ -449,8 +449,8 @@ func updateFollowStatus(currentUserId: String, otherUserId: String, shouldFollow
 }
 
 // TODO: Change completion success return type
-func getActivity(userId: String, completion: @escaping (Result<[String: Any], Error>) -> Void) {
-    // Define the URL for Login API
+func getActivity(userId: String, completion: @escaping (Result<[Activity], Error>) -> Void) {
+    // Define the URL for Activity API
     let getActivityURL = URL(string: Constant.apiPath + Constant.getActivityEndpoint)!
 
     // Create a URLRequest
@@ -482,14 +482,11 @@ func getActivity(userId: String, completion: @escaping (Result<[String: Any], Er
         if let data = data {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
-                    // TODO: Remove later
-                    print("Get Activity Json:")
-                    print(json)
+                    let activities = try JSONDecoder().decode(Activities.self, from: data).activity
+                    let sortedActivities = activities.sorted { $0.dateObtained > $1.dateObtained }
                     
-                    // TODO: Parse Activity, save jwtToken, and return activity list
-                    // ...
-                    
-                    completion(.success(json))
+                    User.saveJwt(json["jwtToken"] as? String ?? "")
+                    completion(.success(sortedActivities))
                 } else {
                     print("Failed to parse JSON data as a dictionary.")
                 }

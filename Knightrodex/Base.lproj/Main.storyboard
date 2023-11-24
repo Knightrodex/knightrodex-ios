@@ -289,20 +289,30 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pe3-kb-zA7">
-                                                    <rect key="frame" x="16" y="16" width="361" height="81"/>
+                                                    <rect key="frame" x="16" y="15.999999999999998" width="361" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ajp-Xd-xtT">
+                                                    <rect key="frame" x="16" y="44.333333333333336" width="31" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="Pe3-kb-zA7" secondAttribute="trailing" constant="16" id="0zN-pi-nS1"/>
                                                 <constraint firstItem="Pe3-kb-zA7" firstAttribute="leading" secondItem="a2O-BE-pZY" secondAttribute="leading" constant="16" id="6Ut-Oc-asP"/>
+                                                <constraint firstItem="Ajp-Xd-xtT" firstAttribute="top" secondItem="Pe3-kb-zA7" secondAttribute="bottom" constant="8" id="FlH-CW-tYl"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ajp-Xd-xtT" secondAttribute="bottom" constant="16" id="NoW-RR-t9E"/>
                                                 <constraint firstItem="Pe3-kb-zA7" firstAttribute="top" secondItem="a2O-BE-pZY" secondAttribute="top" constant="16" id="Nts-yQ-Mak"/>
-                                                <constraint firstAttribute="bottom" secondItem="Pe3-kb-zA7" secondAttribute="bottom" constant="16" id="wAt-xS-4wb"/>
+                                                <constraint firstItem="Ajp-Xd-xtT" firstAttribute="leading" secondItem="Pe3-kb-zA7" secondAttribute="leading" id="bN5-uO-vM2"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ajp-Xd-xtT" secondAttribute="trailing" constant="16" id="wWe-Zy-iy9"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="dateLabel" destination="Ajp-Xd-xtT" id="5ni-1X-Fcb"/>
                                             <outlet property="label" destination="Pe3-kb-zA7" id="gs9-9D-1q7"/>
                                         </connections>
                                     </tableViewCell>
