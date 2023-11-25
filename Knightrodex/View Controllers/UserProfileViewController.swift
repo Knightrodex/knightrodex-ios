@@ -8,7 +8,7 @@
 import UIKit
 import Nuke
 
-class UserProfileViewController: UIViewController, UITableViewDataSource {
+class UserProfileViewController: UIViewController, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var emptyBadgesLabel: UILabel!
     
@@ -18,6 +18,7 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var numberFollowedUser: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    let imagePicker = UIImagePickerController()
     let refreshControl = UIRefreshControl()
 
     private var user = User.getUserLogin()
@@ -35,6 +36,8 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imagePicker.delegate = self
         
         refreshControl.layer.zPosition = -1
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
@@ -111,6 +114,53 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
     
     @objc func refreshData(_ sender: Any) {
         refreshProfile()
+    }
+    
+    @IBAction func didTapProfilePicture(_ sender: Any) {
+        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        
+        let galleryAction = UIAlertAction(title: "Photo Gallery", style: .default) { _ in
+            self.openGallery()
+        }
+        alert.addAction(galleryAction)
+
+        let cameraAction = UIAlertAction(title: "Take Photo", style: .default) { _ in
+            self.openCamera()
+        }
+        alert.addAction(cameraAction)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func openGallery() {
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func openCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            print("Camera not available on this device.")
+        }
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            userProfileAvatar.image = pickedImage
+            
+            // TODO: Upload picture to MongoDB or somewhere else using APIClient
+            // ...
+        }
+        dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func didTapLogOut(_ sender: Any) {
