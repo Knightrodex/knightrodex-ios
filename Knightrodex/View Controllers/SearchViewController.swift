@@ -22,10 +22,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         searchBar.delegate = self
         usersTableView.dataSource = self
         self.refreshSearch()
-        
-        // TODO: Remove later
-        print()
-        print("search jwt: " + User.getJwtToken())
     }
     
     func refreshSearch() {

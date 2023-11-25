@@ -26,10 +26,6 @@ class ScannerViewController: UIViewController, UITableViewDataSource {
         
         hintsTableView.dataSource = self
         self.refreshHints()
-        
-        // TODO: Remove later
-        print()
-        print("scanner jwt: " + User.getJwtToken())
     }
     
     func refreshHints() {

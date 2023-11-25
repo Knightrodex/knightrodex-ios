@@ -26,10 +26,6 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         
         activityTableView.dataSource = self
         self.refreshActivity()
-        
-        // TODO: Remove later
-        print()
-        print("home jwt: " + User.getJwtToken())
     }
     
     func refreshActivity() {

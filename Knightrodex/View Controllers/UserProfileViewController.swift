@@ -36,10 +36,6 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: Remove later
-        print()
-        print("profile jwt: " + User.getJwtToken())
-        
         refreshControl.layer.zPosition = -1
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "Fetching Profile...")
@@ -95,12 +91,6 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
                     let imageUrl = URL(string: "https://www.shareicon.net/data/512x512/2016/05/26/771188_man_512x512.png")
                     
                     Nuke.loadImage(with: imageUrl!, into: self.userProfileAvatar)
-                    
-                    // TODO: Remove later
-                    print("Success! Fetched \(badges.count) badges")
-                    print()
-                    print("New JWT:")
-                    print(User.getJwtToken())
                     
                     // Add the defer statement here in case of empty badges array
                     defer {

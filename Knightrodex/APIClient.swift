@@ -448,7 +448,6 @@ func updateFollowStatus(currentUserId: String, otherUserId: String, shouldFollow
     task.resume()
 }
 
-// TODO: Change completion success return type
 func getActivity(userId: String, completion: @escaping (Result<[Activity], Error>) -> Void) {
     // Define the URL for Activity API
     let getActivityURL = URL(string: Constant.apiPath + Constant.getActivityEndpoint)!

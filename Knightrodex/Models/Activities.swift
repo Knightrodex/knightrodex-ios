@@ -12,11 +12,13 @@ struct Activities: Codable {
 
 // MARK: - Activity
 struct Activity: Codable {
-    let firstName, lastName, badgeID, dateObtained: String
+    let firstName, lastName: String
+    let profilePicture: String
+    let badgeID, badgeTitle, dateObtained: String
 
     enum CodingKeys: String, CodingKey {
-        case firstName, lastName
+        case firstName, lastName, profilePicture
         case badgeID = "badgeId"
-        case dateObtained
+        case badgeTitle, dateObtained
     }
 }

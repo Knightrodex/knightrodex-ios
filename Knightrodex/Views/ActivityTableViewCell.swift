@@ -5,11 +5,15 @@
 //  Created by Max Bagatini Alves on 11/17/23.
 //
 
+import Nuke
 import UIKit
 
 class ActivityTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var userProfileAvatar: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
@@ -24,14 +28,24 @@ class ActivityTableViewCell: UITableViewCell {
     }
 
     func setActivity(_ activity: Activity) {
+        let profileImgURL = URL(string: activity.profilePicture)
         let firstName = activity.firstName
         let lastName = activity.lastName
-        // let profilePicture = activity.profilePicture
-        // let badgeName = activity.badgeName
-        let badgeName = activity.badgeID
+        // let email = activity.email
+        let profilePicture = activity.profilePicture
+        let badgeTitle = "\"\(activity.badgeTitle)\""
         let date = getFormattedDate(dateObtained: activity.dateObtained)
         
-        self.label.text = "\(firstName) \(lastName) obtained \"\(badgeName)\" badge!"
+        let fullText = "Obtained \(badgeTitle) badge!"
+        let range = (fullText as NSString).range(of: badgeTitle)
+        let attributedText = NSMutableAttributedString.init(string: fullText)
+        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.blue , range: range)
+        
+        Nuke.loadImage(with: profileImgURL!, into: self.userProfileAvatar)
+        self.nameLabel.text = "\(firstName) \(lastName)"
+        // self.emailLabel.text = email
+        self.emailLabel.text = "email@email.com"
+        self.label.attributedText = attributedText
         self.dateLabel.text = date
     }
     
