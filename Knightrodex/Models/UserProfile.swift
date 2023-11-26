@@ -24,7 +24,9 @@ struct UserProfile: Codable {
 
 // MARK: - BadgesCollected
 struct BadgesCollected: Codable {
-    let id, title, dateCreated, dateExpired: String
+    let id, title, location: String
+    let coordinates: [Double]
+    let dateCreated, dateExpired: String
     let description: String
     let limit: Int
     let dateObtained: String
@@ -32,6 +34,6 @@ struct BadgesCollected: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case title, dateCreated, dateExpired, description, limit, dateObtained, uniqueNumber
+        case title, dateCreated, dateExpired, description, limit, dateObtained, uniqueNumber, location, coordinates
     }
 }
