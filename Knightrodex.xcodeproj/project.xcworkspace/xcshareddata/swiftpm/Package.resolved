@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "cloudinary_ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/cloudinary/cloudinary_ios.git",
+      "state" : {
+        "revision" : "3f27402baad39b619da8c5bc1a829075fcfaf763",
+        "version" : "4.2.0"
+      }
+    },
+    {
       "identity" : "nuke",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/Nuke.git",

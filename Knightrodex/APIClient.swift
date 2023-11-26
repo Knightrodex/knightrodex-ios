@@ -5,9 +5,10 @@
 //  Created by Ramir Dalencour on 10/26/23.
 //
 
+import Cloudinary
+import CryptoKit
 import Foundation
 import UIKit
-import CryptoKit
 
 func loginUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
     // Define the URL for Login API
@@ -496,6 +497,100 @@ func getActivity(userId: String, completion: @escaping (Result<[Activity], Error
     }
 
     task.resume()
+}
+
+func uploadProfilePictureURL(userId: String, url: String, completion: @escaping (Result<String, Error>) -> Void) {
+    // Define the URL for Update Profile Picture API
+    let updateProfilePictureURL = URL(string: Constant.apiPath + Constant.updateProfilePictureEndpoint)!
+
+    // Create a URLRequest
+    var request = URLRequest(url: updateProfilePictureURL)
+    request.httpMethod = "POST"
+    
+    // Create a dictionary for the request body
+    let requestBody: [String: String] = [
+        "userId": userId,
+        "profilePicture": url,
+        "jwtToken": User.getJwtToken()
+    ]
+    
+    do {
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+    } catch {
+        completion(.failure(error))
+        return
+    }
+
+    // Create a URLSession data task
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        if let error = error {
+            completion(.failure(error))
+            return
+        }
+
+        // Process the API response (assuming it's JSON)
+        if let data = data {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
+                    User.saveJwt(json["jwtToken"] as? String ?? "")
+                    completion(.success(json["error"] as! String))
+                } else {
+                    print("Failed to parse JSON data as a dictionary.")
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    task.resume()
+}
+
+func uploadImageToCloudiary(image: UIImage, userId: String, completion: @escaping (String?) -> Void) {
+    // Configure Cloudinary with your credentials
+    let config = CLDConfiguration(cloudName: Constant.cloudinaryCloudName, apiKey: Constant.cloudinaryApiKey, secure: true)
+    let cloudinary = CLDCloudinary(configuration: config)
+    
+    // Convert UIImage to Data
+    guard let imageData = image.jpegData(compressionQuality: 1.0) else {
+        print("Failed to convert image to data.")
+        completion(nil)
+        return
+    }
+    
+    // Create Cloudinary upload parameters
+    let params = CLDUploadRequestParams()
+    let timestamp = NSNumber(value: Date().timeIntervalSince1970)
+    let publicId = userId
+    let folder = Constant.cloudinaryImgFolder
+    let signature = "folder=\(folder)&public_id=\(publicId)&timestamp=\(timestamp)\(Constant.cloudinaryApiSecret)"
+    
+    // Set Cloudinary Parameters
+    params.setPublicId(publicId)
+    params.setFolder(folder)
+    params.setSignature(CLDSignature(signature: SHA1(signature), timestamp: timestamp))
+    
+    // Process signed upload request
+    cloudinary.createUploader().signedUpload(data: imageData, params: params, completionHandler:  { result, error in
+        if let error = error {
+            print("Error uploading image to Cloudinary: \(error.localizedDescription)")
+            completion(nil)
+        } else if let result = result, let secureURL = result.secureUrl {
+            completion(secureURL)
+        } else {
+            print("Unknown error during Cloudinary upload.")
+            completion(nil)
+        }
+    })
+}
+
+func SHA1(_ string: String) -> String {
+    let digest = Insecure.SHA1.hash(data: Data(string.utf8))
+
+    return digest.map {
+        String(format: "%02hhx", $0)
+    }.joined()
 }
 
 func MD5(string: String) -> String {

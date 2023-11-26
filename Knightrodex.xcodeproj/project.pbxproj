@@ -35,6 +35,7 @@
 		EDCDECE32B08759F00F52D86 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCDECE22B08759E00F52D86 /* BadgeCell.swift */; };
 		EDCDECE62B087AFC00F52D86 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = EDCDECE52B087AFC00F52D86 /* Nuke */; };
 		EDCDECE82B088A3300F52D86 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCDECE72B088A3300F52D86 /* DetailViewController.swift */; };
+		F33ED7682B12D1B9004926FB /* Cloudinary in Frameworks */ = {isa = PBXBuildFile; productRef = F33ED7672B12D1B9004926FB /* Cloudinary */; };
 		F3E24DEA2B110FE700840DBE /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E24DE92B110FE700840DBE /* Activities.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F33ED7682B12D1B9004926FB /* Cloudinary in Frameworks */,
 				EDCDECE62B087AFC00F52D86 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +230,7 @@
 			name = Knightrodex;
 			packageProductDependencies = (
 				EDCDECE52B087AFC00F52D86 /* Nuke */,
+				F33ED7672B12D1B9004926FB /* Cloudinary */,
 			);
 			productName = Knightrodex;
 			productReference = EDB2DD812AEAD54000F9826E /* Knightrodex.app */;
@@ -303,6 +306,7 @@
 			mainGroup = EDB2DD782AEAD54000F9826E;
 			packageReferences = (
 				EDCDECE42B087AFC00F52D86 /* XCRemoteSwiftPackageReference "Nuke" */,
+				F33ED7662B12D1B9004926FB /* XCRemoteSwiftPackageReference "cloudinary_ios" */,
 			);
 			productRefGroup = EDB2DD822AEAD54000F9826E /* Products */;
 			projectDirPath = "";
@@ -727,6 +731,14 @@
 				version = 9.6.1;
 			};
 		};
+		F33ED7662B12D1B9004926FB /* XCRemoteSwiftPackageReference "cloudinary_ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cloudinary/cloudinary_ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -734,6 +746,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EDCDECE42B087AFC00F52D86 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = Nuke;
+		};
+		F33ED7672B12D1B9004926FB /* Cloudinary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F33ED7662B12D1B9004926FB /* XCRemoteSwiftPackageReference "cloudinary_ios" */;
+			productName = Cloudinary;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

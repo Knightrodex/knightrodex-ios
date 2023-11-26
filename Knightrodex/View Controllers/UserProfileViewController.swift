@@ -15,7 +15,9 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UIImag
     // This is in testing stages so far:
     @IBOutlet weak var userProfileAvatar: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var createDateLabel: UILabel!
     @IBOutlet weak var numberFollowedUser: UILabel!
+    @IBOutlet weak var numberBadgesLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     let imagePicker = UIImagePickerController()
@@ -88,7 +90,9 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UIImag
                     self.tableView.reloadData()
                     
                     self.nameLabel.text = "\(firstName) \(lastName)"
-                    self.numberFollowedUser.text = "\(noFollowedUsers) Followed Users"
+                    self.createDateLabel.text = "Created at \(self.getFormattedDate(dateObtained: userProfile.dateCreated))"
+                    self.numberFollowedUser.text = "\(noFollowedUsers)\nFollowing"
+                    self.numberBadgesLabel.text = "\(badges.count)\nBadges"
                     
                     // Just for testing purposes:
                     let imageUrl = URL(string: userProfile.profilePicture)
@@ -110,6 +114,19 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UIImag
                 }
             }
         }
+    }
+    
+    func getFormattedDate(dateObtained: String) -> String {
+        let dateFormatterGet = ISO8601DateFormatter()
+        dateFormatterGet.formatOptions.insert(.withFractionalSeconds)
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateStyle = .short
+        
+        let date = dateFormatterGet.date(from: dateObtained)
+        let displayDate = dateFormatterPrint.string(from: date!)
+        
+        return displayDate
     }
     
     @objc func refreshData(_ sender: Any) {
@@ -151,10 +168,34 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UIImag
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            userProfileAvatar.image = pickedImage
-            
-            // TODO: Upload picture to MongoDB or somewhere else using APIClient
-            // ...
+            uploadImageToCloudiary(image: pickedImage, userId: user.userId) { imageURL in
+                if let imageURL = imageURL {
+                    uploadProfilePictureURL(userId: self.user.userId, url: imageURL) { result in
+                        switch result {
+                        case .success(let error):
+                            DispatchQueue.main.async {
+                                if (!error.isEmpty) {
+                                    self.showAlert(title: "Picture Upload Failed", message: error)
+                                    return
+                                }
+                                
+                                let url = URL(string: imageURL)
+                                Nuke.loadImage(with: url!, into: self.userProfileAvatar)
+                            }
+                        case .failure(let error):
+                            print("Profile Picture API Call Error: \(error)")
+                            DispatchQueue.main.async {
+                                self.showAlert(title: "Picture Upload Error", message: error.localizedDescription)
+                            }
+                        }
+                    }
+                } else {
+                    print("Image upload failed.")
+                    DispatchQueue.main.async {
+                        self.showAlert(title: "Picture Upload Error", message: "Unkown Cloudinary error.")
+                    }
+                }
+            }
         }
         dismiss(animated: true, completion: nil)
     }
