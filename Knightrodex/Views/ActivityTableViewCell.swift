@@ -31,8 +31,7 @@ class ActivityTableViewCell: UITableViewCell {
         let profileImgURL = URL(string: activity.profilePicture)
         let firstName = activity.firstName
         let lastName = activity.lastName
-        // let email = activity.email
-        let profilePicture = activity.profilePicture
+        let email = activity.email
         let badgeTitle = "\"\(activity.badgeTitle)\""
         let date = getFormattedDate(dateObtained: activity.dateObtained)
         
@@ -42,9 +41,8 @@ class ActivityTableViewCell: UITableViewCell {
         attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.blue , range: range)
         
         Nuke.loadImage(with: profileImgURL!, into: self.userProfileAvatar)
-        self.nameLabel.text = "\(firstName) \(lastName)"
-        // self.emailLabel.text = email
-        self.emailLabel.text = "email@email.com"
+        self.nameLabel.text = "\(firstName) \(lastName)"        
+        self.emailLabel.text = email
         self.label.attributedText = attributedText
         self.dateLabel.text = date
     }
