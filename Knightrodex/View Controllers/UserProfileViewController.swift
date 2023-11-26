@@ -91,7 +91,7 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UIImag
                     self.numberFollowedUser.text = "\(noFollowedUsers) Followed Users"
                     
                     // Just for testing purposes:
-                    let imageUrl = URL(string: "https://www.shareicon.net/data/512x512/2016/05/26/771188_man_512x512.png")
+                    let imageUrl = URL(string: userProfile.profilePicture)
                     
                     Nuke.loadImage(with: imageUrl!, into: self.userProfileAvatar)
                     
