@@ -13,11 +13,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     let map = MKMapView()
     
-    // We can come here and just plug in the location...
-    let coordinate = CLLocationCoordinate2D(latitude: 28.6024, longitude: -81.2001)
+    // Those variables handle the passing data from different screens
+    var lat: Double!
+    var long: Double!
+    
+    var coordinate: CLLocationCoordinate2D! = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
         
         view.addSubview(map)
         map.frame = view.bounds
