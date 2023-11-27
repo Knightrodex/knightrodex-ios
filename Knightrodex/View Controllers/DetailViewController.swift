@@ -20,8 +20,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var badgeNumberLabel: UILabel!
     
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,19 +40,4 @@ class DetailViewController: UIViewController {
         mapViewController.lat = badge.coordinates[0]
         mapViewController.long = badge.coordinates[1]
     }
-    
-    
-    
-    // This is for sending the badge details over t the Details View Controller
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let selectedIndexPath = tableView.indexPathForSelectedRow else { return }
-//        
-//        let selectedBadge = badges[selectedIndexPath.row]
-//        
-//        guard let detailViewController = segue.destination as? DetailViewController else { return }
-//        
-//        detailViewController.badge = selectedBadge
-//    }
-    
-
 }
