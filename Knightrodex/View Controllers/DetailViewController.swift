@@ -39,5 +39,6 @@ class DetailViewController: UIViewController {
         
         mapViewController.lat = badge.coordinates[0]
         mapViewController.long = badge.coordinates[1]
+        mapViewController.tittle = badge.title
     }
 }

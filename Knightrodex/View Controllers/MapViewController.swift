@@ -16,6 +16,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // Those variables handle the passing data from different screens
     var lat: Double!
     var long: Double!
+    var tittle: String!
     
     var coordinate: CLLocationCoordinate2D! = nil
 
@@ -44,7 +45,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     private func addCustomPin() {
         let pin = MKPointAnnotation()
         pin.coordinate = coordinate
-        pin.title = "UCF Here"
+//        pin.title = "UCF Here"
+        pin.title = tittle
         pin.subtitle = "Go and catch them all"
         
         
