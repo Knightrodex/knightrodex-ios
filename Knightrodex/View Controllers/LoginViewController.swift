@@ -12,6 +12,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    
+    // For Setting Buttons Programatically!!!
+    @IBOutlet weak var loginButtonOutlet: UIButton!
+    @IBOutlet weak var signUpButtonOutlet: UIButton!
+    
+    
+    let buttonColor = UIColor(red: 247, green: 191, blue: 80, alpha: 255)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,6 +27,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.delegate = self
         
         // Listen for keyboard events
+        
+        
+        // Button Layouts
+        
+        
+        loginButtonOutlet.backgroundColor = buttonColor
+        
     }
     
     @IBAction func didTapLoginButton(_ sender: UIButton) {

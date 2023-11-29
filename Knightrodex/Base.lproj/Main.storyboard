@@ -56,18 +56,13 @@
                                     <segue destination="XIL-3i-iSY" kind="presentation" id="1VI-SE-Frg"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Knightrodex" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFV-7i-dVb">
-                                <rect key="frame" x="50" y="235" width="282" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="35"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GW4-Od-ZnF">
                                 <rect key="frame" x="50" y="529" width="282" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Forgot Password?"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Forgot Password?">
+                                    <color key="baseForegroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <segue destination="hwO-iJ-KeT" kind="presentation" id="1FX-MQ-gFY"/>
                                 </connections>
@@ -85,20 +80,26 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vK-B6-Iiq">
-                                <rect key="frame" x="63" y="285" width="269" height="32"/>
+                                <rect key="frame" x="63" y="300" width="269" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="launch_black" translatesAutoresizingMaskIntoConstraints="NO" id="rvt-Xt-rfX">
+                                <rect key="frame" x="63" y="86" width="269" height="218"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.99215686319999996" green="0.98039215800000001" blue="0.89019608500000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" id="FoU-Qn-ZI6"/>
                     <connections>
                         <outlet property="emailTextField" destination="Te9-NZ-Ow9" id="CKE-W8-gMK"/>
+                        <outlet property="loginButtonOutlet" destination="uMZ-Ho-NZj" id="Hjo-ep-T5D"/>
                         <outlet property="passwordTextField" destination="FJN-mo-lyS" id="J7Q-BQ-dpA"/>
+                        <outlet property="signUpButtonOutlet" destination="o9N-3N-dq2" id="nM8-Ir-e5h"/>
                         <segue destination="WC5-bh-xM2" kind="show" identifier="LoginToTapBar" id="9MX-9x-eEC"/>
                     </connections>
                 </viewController>
@@ -160,7 +161,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wcA-Ue-0Xu"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.94155319400000004" blue="0.81922461849999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="O8T-8P-xmk" firstAttribute="top" secondItem="wcA-Ue-0Xu" secondAttribute="top" id="6Op-Vz-8o7"/>
                             <constraint firstItem="O8T-8P-xmk" firstAttribute="leading" secondItem="wcA-Ue-0Xu" secondAttribute="leading" id="HXj-iD-p8V"/>
@@ -297,7 +298,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zgM-Qo-ApN">
                                 <rect key="frame" x="0.0" y="56" width="393" height="747"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="1" green="0.94155319400000004" blue="0.81922461849999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityTableViewCell" rowHeight="165" id="vzM-91-oKo" customClass="ActivityTableViewCell" customModule="Knightrodex" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="165"/>
@@ -431,37 +432,38 @@
                                     <outletCollection property="gestureRecognizers" destination="dYq-Ta-eVF" appends="YES" id="1AE-KB-naF"/>
                                 </connections>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="171" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Win-MS-0hw">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="142" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Win-MS-0hw">
                                 <rect key="frame" x="0.0" y="232" width="393" height="571"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="1" green="0.94155319400000004" blue="0.81922461849999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No badges yet 😔" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oTU-hw-Zsq">
-                                    <rect key="frame" x="0.0" y="249" width="393" height="110"/>
+                                    <rect key="frame" x="0.0" y="220" width="393" height="110"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
-                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BadgeCell" rowHeight="171" id="Kfi-bS-tXG" customClass="BadgeCell" customModule="Knightrodex" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="171"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BadgeCell" rowHeight="142" id="Kfi-bS-tXG" customClass="BadgeCell" customModule="Knightrodex" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="142"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kfi-bS-tXG" id="9d0-bX-79C">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="171"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="142"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="54W-tI-fa1">
-                                                    <rect key="frame" x="20" y="9" width="112" height="151"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="54W-tI-fa1">
+                                                    <rect key="frame" x="20" y="11" width="112" height="120"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="py0-U8-SCC">
                                                     <rect key="frame" x="140" y="45" width="233" height="70"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.94155319400000004" blue="0.81922461849999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <outlet property="posterImageView" destination="54W-tI-fa1" id="F2N-CR-t84"/>
                                             <outlet property="titleLabel" destination="py0-U8-SCC" id="XAb-xQ-z6V"/>
@@ -540,7 +542,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5091" y="1558"/>
+            <point key="canvasLocation" x="5090.8396946564881" y="1557.7464788732395"/>
         </scene>
         <!--Badge Details-->
         <scene sceneID="SAJ-HX-lq9">
@@ -596,7 +598,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uGF-Xj-FcS"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.99215686319999996" green="0.98039215800000001" blue="0.89019608500000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Badge Details" id="sfd-Zr-QDv"/>
                     <connections>
@@ -727,23 +729,20 @@
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Knightrodex" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7n-nF-9FS">
-                                <rect key="frame" x="36" y="65" width="320" height="42"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="launch_black" translatesAutoresizingMaskIntoConstraints="NO" id="a0d-hm-y04">
+                                <rect key="frame" x="144" y="20" width="105" height="146"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="35"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kw-Di-Tb7">
-                                <rect key="frame" x="62" y="115" width="269" height="32"/>
+                                <rect key="frame" x="62" y="151" width="269" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v5X-yX-1gd"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.94155319400000004" blue="0.81922461849999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="ije-C7-vGE" id="fzf-9w-QVU"/>
@@ -765,13 +764,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Knightrodex" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldt-oj-iUT">
-                                <rect key="frame" x="36" y="71" width="320" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="35"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FT8-NP-YVj">
                                 <rect key="frame" x="36" y="202" width="260" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -856,16 +848,20 @@
                                     <action selector="didTapResetCodeButton:" destination="hwO-iJ-KeT" eventType="touchUpInside" id="dTH-t8-ld1"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forgot Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGj-FC-aHo">
-                                <rect key="frame" x="62" y="121" width="269" height="32"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="launch_black" translatesAutoresizingMaskIntoConstraints="NO" id="Wfw-tw-IPM">
+                                <rect key="frame" x="144" y="20" width="105" height="146"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forgot Password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGj-FC-aHo">
+                                <rect key="frame" x="62" y="162" width="269" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qAw-sr-flD"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.94155319400000004" blue="0.81922461849999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="37q-QB-5X4" id="5Ea-bz-ojq"/>
@@ -957,6 +953,7 @@
         <image name="camera.fill" catalog="system" width="128" height="93"/>
         <image name="envelope" catalog="system" width="128" height="85"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="launch_black" width="1200" height="1200"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
         <image name="qrcode.viewfinder" catalog="system" width="128" height="115"/>
@@ -967,14 +964,14 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="viewFlipsideBackgroundColor">
+            <color red="0.12156862745098039" green="0.12941176470588237" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

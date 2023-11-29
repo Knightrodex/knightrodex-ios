@@ -92,7 +92,11 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UIImag
                     self.nameLabel.text = "\(firstName) \(lastName)"
                     self.createDateLabel.text = "Created at \(self.getFormattedDate(dateObtained: userProfile.dateCreated))"
                     self.numberFollowedUser.text = "\(noFollowedUsers)\nFollowing"
-                    self.numberBadgesLabel.text = "\(badges.count)\nBadges"
+                    
+                    var tmpBadge = "\(badges.count)\nBadge"
+                    
+                    (badges.count > 1) ? tmpBadge.append("s") : tmpBadge.append("")
+                    self.numberBadgesLabel.text = tmpBadge
                     
                     // Just for testing purposes:
                     let imageUrl = URL(string: userProfile.profilePicture)
@@ -223,7 +227,9 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UIImag
         
         let badge = badges[indexPath.row]
         
-        let imageUrl = URL(string: "https://i.ebayimg.com/images/g/xY8AAOSweFtlQUMn/s-l1600.png")
+//        let imageUrl = URL(string: "https://i.ebayimg.com/images/g/xY8AAOSweFtlQUMn/s-l1600.png")
+        
+        let imageUrl = URL(string: badge.badgeImage)
         
         Nuke.loadImage(with: imageUrl!, into: cell.posterImageView)
         

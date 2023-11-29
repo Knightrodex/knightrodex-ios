@@ -29,11 +29,12 @@ struct BadgesCollected: Codable {
     let dateCreated, dateExpired: String
     let description: String
     let limit: Int
+    let badgeImage: String
     let dateObtained: String
     let uniqueNumber: Int
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case title, dateCreated, dateExpired, description, limit, dateObtained, uniqueNumber, location, coordinates
+        case title, dateCreated, dateExpired, description, limit, dateObtained, uniqueNumber, location, coordinates, badgeImage
     }
 }

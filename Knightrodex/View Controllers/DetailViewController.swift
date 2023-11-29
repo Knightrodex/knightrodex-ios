@@ -29,7 +29,8 @@ class DetailViewController: UIViewController {
         badgeNumberLabel.text = "Badge Number: \(badge.uniqueNumber)"
         
         // Those are just for testing purposes:
-        let imageUrl = URL(string: "https://i.ebayimg.com/images/g/xY8AAOSweFtlQUMn/s-l1600.png")
+//        let imageUrl = URL(string: "https://i.ebayimg.com/images/g/xY8AAOSweFtlQUMn/s-l1600.png")
+        let imageUrl = URL(string: badge.badgeImage)
         
         Nuke.loadImage(with: imageUrl!, into: posterImage)
     }
