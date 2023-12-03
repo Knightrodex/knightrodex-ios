@@ -61,12 +61,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     if (self.isInvalidUser(user: user)) {
                         self.showAlert(title: "Sign Up Failed", message: user.error!)
                         return;
+                    } else {
+                        self.showAlert(title: "Account Created", message: "Please verify your account through your email.")
+                        return
                     }
-                    
-                    self.hiddedTextLabel.text = "Account Created"
-                    self.hiddedTextLabel.textColor = UIColor.green
-                    self.hiddedTextLabel.isHidden = false
-                    self.dismiss(animated: true, completion: nil)
                     
                 }
             case .failure(let error):

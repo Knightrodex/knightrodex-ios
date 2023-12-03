@@ -26,6 +26,8 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         
         activityTableView.dataSource = self
         self.refreshActivity()
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     func refreshActivity() {

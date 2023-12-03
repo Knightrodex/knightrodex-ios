@@ -48,7 +48,20 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UIImag
         
         tableView.dataSource = self
         self.refreshProfile()
+        
+        // May have to delete
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: animated)
+        }
+    }
+    
     
     // This is for sending the badge details over t the Details View Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -33,6 +33,9 @@ class DetailViewController: UIViewController {
         let imageUrl = URL(string: badge.badgeImage)
         
         Nuke.loadImage(with: imageUrl!, into: posterImage)
+        
+        // May have to delete
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
