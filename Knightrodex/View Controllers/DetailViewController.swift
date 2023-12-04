@@ -24,7 +24,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         titleLabel.text = badge.title
-        dateObtainedLabel.text = badge.dateObtained
+        dateObtainedLabel.text = getFormattedDate(dateObtained: badge.dateObtained)
         descriptionLabel.text = badge.description
         badgeNumberLabel.text = "Badge Number: \(badge.uniqueNumber)"
         
@@ -36,6 +36,19 @@ class DetailViewController: UIViewController {
         
         // May have to delete
         navigationItem.largeTitleDisplayMode = .never
+    }
+    
+    func getFormattedDate(dateObtained: String) -> String {
+        let dateFormatterGet = ISO8601DateFormatter()
+        dateFormatterGet.formatOptions.insert(.withFractionalSeconds)
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateStyle = .short
+        
+        let date = dateFormatterGet.date(from: dateObtained)
+        let displayDate = dateFormatterPrint.string(from: date!)
+        
+        return displayDate
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

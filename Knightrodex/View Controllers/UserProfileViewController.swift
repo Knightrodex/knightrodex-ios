@@ -51,6 +51,9 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UIImag
         
         // May have to delete
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        userProfileAvatar.layer.cornerRadius = userProfileAvatar.frame.size.width / 2
+        userProfileAvatar.clipsToBounds = true
     }
     
     

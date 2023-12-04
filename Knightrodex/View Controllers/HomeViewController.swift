@@ -11,6 +11,11 @@ class HomeViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var activityTableView: UITableView!
     
+    
+    @IBOutlet weak var noActivitiesLabel: UILabel!
+    
+    
+    
     let refreshControl = UIRefreshControl()
     
     var user = User.getUserLogin()
@@ -27,6 +32,8 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         activityTableView.dataSource = self
         self.refreshActivity()
         
+        
+        
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -38,6 +45,10 @@ class HomeViewController: UIViewController, UITableViewDataSource {
                     self.activityArray = activities
                     self.refreshControl.endRefreshing()
                     self.activityTableView.reloadData()
+                    
+                    defer {
+                        self.noActivitiesLabel.isHidden = !self.activityArray.isEmpty
+                    }
                 }
             case .failure(let error):
                 print("Get Activity API Call Error: \(error)")
@@ -61,6 +72,9 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityTableViewCell", for: indexPath) as! ActivityTableViewCell
         
         cell.setActivity(activityArray[indexPath.row])
+        
+        cell.userProfileAvatar.layer.cornerRadius = cell.userProfileAvatar.frame.size.width / 2
+        cell.userProfileAvatar.clipsToBounds = true
         return cell
     }
     

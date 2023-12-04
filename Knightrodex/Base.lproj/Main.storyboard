@@ -193,6 +193,7 @@
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Email" translatesAutoresizingMaskIntoConstraints="NO" id="X2Z-Jf-YHn">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                                <color key="barTintColor" red="0.98783546690000001" green="0.93818604949999995" blue="0.80400854349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="zx8-SB-BJ1" id="yUK-lL-hay"/>
@@ -201,6 +202,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JPP-GT-fEM">
                                 <rect key="frame" x="0.0" y="56" width="393" height="766"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" red="0.98783546690000001" green="0.93818604949999995" blue="0.80400854349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTableViewCell" rowHeight="116" id="vA8-fu-HOW" customClass="UserTableViewCell" customModule="Knightrodex" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="116"/>
@@ -259,6 +261,7 @@
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="B5k-U0-mF5" secondAttribute="bottom" constant="26" id="vw0-1Q-1k5"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.98783546690000001" green="0.93818604949999995" blue="0.80400854349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="emailLabel" destination="5vI-T1-JUW" id="zsT-Zw-Am2"/>
                                             <outlet property="followButton" destination="vOC-zZ-TsE" id="Xa3-MN-oqv"/>
@@ -303,6 +306,14 @@
                                 <rect key="frame" x="0.0" y="56" width="393" height="747"/>
                                 <color key="backgroundColor" red="1" green="0.94155319400000004" blue="0.81922461849999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="sectionIndexBackgroundColor" red="0.98783546690000001" green="0.93818604949999995" blue="0.80400854349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="0.98754793409999997" green="0.93417024609999999" blue="0.80420917270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No activities yet 😔" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JaZ-YZ-zU4">
+                                    <rect key="frame" x="0.0" y="243" width="393" height="110"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
+                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityTableViewCell" rowHeight="165" id="vzM-91-oKo" customClass="ActivityTableViewCell" customModule="Knightrodex" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="165"/>
@@ -389,7 +400,10 @@
                                 <rect key="frame" x="290" y="10.666666666666664" width="87" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="magnifyingglass" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="filled" image="magnifyingglass" catalog="system">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" red="0.92941176889999999" green="0.75686275960000005" blue="0.38823530080000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <segue destination="zx8-SB-BJ1" kind="presentation" id="gF4-3I-9Jd"/>
                                 </connections>
@@ -398,6 +412,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activityTableView" destination="zgM-Qo-ApN" id="0Qc-Fp-sBH"/>
+                        <outlet property="noActivitiesLabel" destination="JaZ-YZ-zU4" id="qc0-a7-ZFD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PRw-fe-eio" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -977,13 +992,13 @@
         <image name="qrcode.viewfinder" catalog="system" width="128" height="115"/>
         <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="108"/>
         <systemColor name="placeholderTextColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
