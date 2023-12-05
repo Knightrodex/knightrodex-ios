@@ -92,7 +92,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.98783546690000001" green="0.93818604949999995" blue="0.80400854349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.98107248540000003" green="0.93359023330000002" blue="0.82099038359999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="FoU-Qn-ZI6"/>
                     <connections>
